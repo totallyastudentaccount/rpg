@@ -6,6 +6,6 @@
 
 [node name="player" parent="." unique_id=933381913 instance=ExtResource("1_itxqv")]
 visible = true
-position = Vector2(115, 109)
+position = Vector2(116, 109)
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=337366663]

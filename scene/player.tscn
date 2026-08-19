@@ -25,12 +25,12 @@ visible = false
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1209717079]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D" unique_id=1402188898]
-sprite_frames = SubResource("SpriteFrames_wc7jt")
-frame_progress = 0.36285266
-
 [node name="CharacterBody2D" type="CharacterBody2D" parent="Node2D" unique_id=782805993]
 script = ExtResource("1_fvtld")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D/CharacterBody2D" unique_id=1402188898]
+sprite_frames = SubResource("SpriteFrames_wc7jt")
+frame_progress = 0.36285266
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/CharacterBody2D" unique_id=1170305897]
 position = Vector2(1, 34)

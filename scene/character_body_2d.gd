@@ -34,4 +34,3 @@ func update_animation(direction: Vector2) -> void:
 			last_direction = "up"
 	
 	#animated_sprite.play("walk")
-	move_and_slide()
