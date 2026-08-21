@@ -8,4 +8,5 @@
 visible = true
 position = Vector2(116, 109)
 
-[node name="Camera2D" type="Camera2D" parent="player" unique_id=337366663]
+[node name="Camera2D" type="Camera2D" parent="player" unique_id=497314742]
+zoom = Vector2(2, 2)
