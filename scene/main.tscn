@@ -7,11 +7,10 @@
 
 [node name="house" parent="." unique_id=1062916822 instance=ExtResource("1_v0l8b")]
 position = Vector2(-166, -69)
-scale = Vector2(2, 2)
 
 [node name="player" parent="." unique_id=933381913 instance=ExtResource("1_itxqv")]
 position = Vector2(548, 347)
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.25, 1.25)
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=497314742]
 zoom = Vector2(1.5, 1.5)
