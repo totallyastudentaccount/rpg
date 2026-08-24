@@ -2,6 +2,39 @@
 
 [ext_resource type="Script" uid="uid://c1fqk17jlwfjd" path="res://scene/character_body_2d.gd" id="1_fvtld"]
 [ext_resource type="Texture2D" uid="uid://iopbyukadm0l" path="res://assets/character/PC.png" id="1_hjaqi"]
+[ext_resource type="Texture2D" uid="uid://nv2mw1nr733a" path="res://assets/character/PC_front_walk.png" id="2_fvtld"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ct4mp"]
+atlas = ExtResource("2_fvtld")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4jxa"]
+atlas = ExtResource("2_fvtld")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oh5ij"]
+atlas = ExtResource("2_fvtld")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hp4bs"]
+atlas = ExtResource("2_fvtld")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2vtq"]
+atlas = ExtResource("2_fvtld")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fvbb"]
+atlas = ExtResource("2_fvtld")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ml7e8"]
+atlas = ExtResource("2_fvtld")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihjo1"]
+atlas = ExtResource("2_fvtld")
+region = Rect2(448, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fvtld"]
 atlas = ExtResource("1_hjaqi")
@@ -11,27 +44,52 @@ region = Rect2(0, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ct4mp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4jxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oh5ij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hp4bs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2vtq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fvbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ml7e8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihjo1")
+}],
+"loop": 1,
+"name": &"front_walk",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_fvtld")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"idle",
 "speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bm3lg"]
 
-[node name="player" type="Node2D" unique_id=933381913]
-visible = false
-
-[node name="Node2D" type="Node2D" parent="." unique_id=1209717079]
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="Node2D" unique_id=782805993]
+[node name="player" type="CharacterBody2D" unique_id=782805993]
 script = ExtResource("1_fvtld")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D/CharacterBody2D" unique_id=1402188898]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1402188898]
 sprite_frames = SubResource("SpriteFrames_wc7jt")
-frame_progress = 0.36285266
+animation = &"front_walk"
+frame_progress = 0.20533274
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/CharacterBody2D" unique_id=1170305897]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1170305897]
 position = Vector2(1, 34)
 shape = SubResource("CircleShape2D_bm3lg")

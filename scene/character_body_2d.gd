@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-@export var speed: float = 150.0
+@export var speed: float = 100.0
 
-#@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 # Tracks the last directional facing state for idle animations
 var last_direction: String = "down"
@@ -17,7 +17,7 @@ func _physics_process(_delta: float) -> void:
 
 func update_animation(direction: Vector2) -> void:
 	if direction == Vector2.ZERO:
-		#animated_sprite.play("idle")
+		animated_sprite.play("idle")
 		return
 		
 	if abs(direction.x) > abs(direction.y):
@@ -33,4 +33,4 @@ func update_animation(direction: Vector2) -> void:
 		else:
 			last_direction = "up"
 	
-	#animated_sprite.play("walk")
+	animated_sprite.play("front_walk")
