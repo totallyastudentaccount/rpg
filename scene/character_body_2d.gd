@@ -23,14 +23,18 @@ func update_animation(direction: Vector2) -> void:
 	if abs(direction.x) > abs(direction.y):
 		if direction.x > 0:
 			last_direction = "right"
-			#animated_sprite.flip_h = false
+			animated_sprite.flip_h = false
+			animated_sprite.play("side_walk")
 		else:
 			last_direction = "left"
-			#animated_sprite.flip_h = true
+			animated_sprite.flip_h = true
+			animated_sprite.play("side_walk")
 	else:
 		if direction.y > 0:
 			last_direction = "down"
+			animated_sprite.play("front_walk")
 		else:
 			last_direction = "up"
+			animated_sprite.play("back_walk")
 	
-	animated_sprite.play("front_walk")
+	
