@@ -12,6 +12,7 @@ size = Vector2(20, 27)
 
 [node name="BaseDoor" type="Area2D" unique_id=1332071849]
 script = ExtResource("1_ox5o8")
+target_scene = "uid://dycwt6ds5l8oe"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=31785083]
 texture = SubResource("AtlasTexture_wc7jt")
