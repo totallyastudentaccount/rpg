@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://xqxbxnl8n8b1"]
+
+[ext_resource type="Script" uid="uid://dvnqt6g75ny1m" path="res://script/walkThroughDoor.gd" id="1_ox5o8"]
+[ext_resource type="Texture2D" uid="uid://b8c812il0etx2" path="res://assets/tilesets/house/house_details.png" id="2_k8abg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wc7jt"]
+atlas = ExtResource("2_k8abg")
+region = Rect2(16, 208, 32, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bm3lg"]
+size = Vector2(20, 27)
+
+[node name="BaseDoor" type="Area2D" unique_id=1332071849]
+script = ExtResource("1_ox5o8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=31785083]
+texture = SubResource("AtlasTexture_wc7jt")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=617737053]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_bm3lg")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
