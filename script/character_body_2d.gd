@@ -17,7 +17,6 @@ func update_animation(direction: Vector2) -> void:
 		animated_sprite.play("idle") 
 		return 
 
-	# 1. DIAGONAL CHECK: If moving both horizontally and vertically, prioritize side walk
 	if direction.x != 0 and direction.y != 0:
 		if direction.x > 0:
 			last_direction = "right"
@@ -28,7 +27,6 @@ func update_animation(direction: Vector2) -> void:
 			animated_sprite.flip_h = true
 			animated_sprite.play("side_walk")
 
-	# 2. CARDINAL CHECK: Normal straight movement when not moving diagonally
 	elif abs(direction.x) > abs(direction.y): 
 		if direction.x > 0: 
 			last_direction = "right" 

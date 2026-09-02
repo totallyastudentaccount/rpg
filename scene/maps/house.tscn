@@ -1,12 +1,12 @@
 [gd_scene format=4 uid="uid://c4e5dikws5en2"]
 
-[ext_resource type="Texture2D" uid="uid://diwmajcsmbsl3" path="res://assets/tilesets/house/Interior.png" id="1_ae14o"]
-[ext_resource type="Texture2D" uid="uid://b8c812il0etx2" path="res://assets/tilesets/house/house_details.png" id="2_3bjdp"]
-[ext_resource type="Texture2D" uid="uid://dkhcthtnjrin8" path="res://assets/tilesets/house/walls_floor.png" id="3_52fq0"]
 [ext_resource type="PackedScene" uid="uid://xqxbxnl8n8b1" path="res://scene/misc/base_door.tscn" id="4_ce7p6"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ycjso"]
+load_path = "res://.godot/imported/Interior.png-ab9a122ca71326970bf241e77d8fdaa6.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2813k"]
-texture = ExtResource("1_ae14o")
+texture = SubResource("CompressedTexture2D_ycjso")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -282,8 +282,11 @@ texture = ExtResource("1_ae14o")
 9:24/0 = 0
 10:24/0 = 0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fji3n"]
+load_path = "res://.godot/imported/house_details.png-9740a95edbe0288ad1825e8df8b4ad59.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qg36w"]
-texture = ExtResource("2_3bjdp")
+texture = SubResource("CompressedTexture2D_fji3n")
 5:1/0 = 0
 6:1/0 = 0
 7:1/0 = 0
@@ -398,8 +401,11 @@ texture = ExtResource("2_3bjdp")
 6:2/0 = 0
 7:2/0 = 0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ykks0"]
+load_path = "res://.godot/imported/walls_floor.png-47833685d9a62874844bb6eb529c2e66.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_66jkb"]
-texture = ExtResource("3_52fq0")
+texture = SubResource("CompressedTexture2D_ykks0")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -550,7 +556,7 @@ sources/2 = SubResource("TileSetAtlasSource_qg36w")
 sources/3 = SubResource("TileSetAtlasSource_66jkb")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ae14o"]
-texture = ExtResource("1_ae14o")
+texture = SubResource("CompressedTexture2D_ycjso")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -827,7 +833,7 @@ texture = ExtResource("1_ae14o")
 6:11/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3bjdp"]
-texture = ExtResource("2_3bjdp")
+texture = SubResource("CompressedTexture2D_fji3n")
 1:1/0 = 0
 2:1/0 = 0
 3:1/0 = 0
@@ -946,7 +952,7 @@ texture = ExtResource("2_3bjdp")
 scenes/1/scene = ExtResource("4_ce7p6")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ce7p6"]
-texture = ExtResource("3_52fq0")
+texture = SubResource("CompressedTexture2D_ykks0")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0

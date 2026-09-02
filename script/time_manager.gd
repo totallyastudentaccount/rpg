@@ -8,7 +8,6 @@ var minutes: int = 0
 var hours: int = 0
 var days: int = 0
 
-# Signal that passes hours and minutes
 signal time_changed(hours: int, minutes: int)
 
 func _process(delta: float) -> void:
@@ -26,5 +25,4 @@ func _process(delta: float) -> void:
 				hours = 0
 				days += 1
 				
-		# Only emit the signal when a minute actually changes
 		time_changed.emit(hours, minutes)
