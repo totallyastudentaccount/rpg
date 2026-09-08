@@ -122,7 +122,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"back_idle",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -239,4 +239,5 @@ animation = &"back_idle"
 frame_progress = 0.8785942
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1170305897]
+position = Vector2(0, 18)
 shape = SubResource("CircleShape2D_bm3lg")

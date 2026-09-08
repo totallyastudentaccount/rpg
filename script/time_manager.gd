@@ -1,28 +1,38 @@
-class_name TimeSystem
 extends Node
 
-@export var tick_per_second: float = 60.0
+signal minute_passed(hour: int, minute: int)
 
-var seconds: float = 0.0
-var minutes: int = 0
-var hours: int = 0
-var days: int = 0
+@export var real_seconds_per_game_minute: float = 0.5
+@export var start_hour: int = 8
+@export var start_minute: int = 0
 
-signal time_changed(hours: int, minutes: int)
+var current_hour: int = 8
+var current_minute: int = 0
+var minute_timer: float = 0.0
+
+func _ready() -> void:
+	current_hour = start_hour
+	current_minute = start_minute
 
 func _process(delta: float) -> void:
-	seconds += delta * tick_per_second
-	
-	if seconds >= 60.0:
-		seconds = fmod(seconds, 60.0)
-		minutes += 1
-		
-		if minutes >= 60:
-			minutes = 0
-			hours += 1
+	minute_timer += delta
+	if minute_timer >= real_seconds_per_game_minute:
+		minute_timer -= real_seconds_per_game_minute
+		advance_minute()
+
+func advance_minute() -> void:
+	current_minute += 1
+	if current_minute >= 60:
+		current_minute = 0
+		current_hour += 1
+		if current_hour >= 24:
+			current_hour = 0
 			
-			if hours >= 24:
-				hours = 0
-				days += 1
-				
-		time_changed.emit(hours, minutes)
+	minute_passed.emit(current_hour, current_minute)
+
+func get_formatted_time() -> String:
+	var display_hour = current_hour % 12
+	if display_hour == 0:
+		display_hour = 12
+	var period = "AM" if current_hour < 12 else "PM"
+	return "%02d:%02d %s" % [display_hour, current_minute, period]

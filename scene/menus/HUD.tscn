@@ -1,9 +1,17 @@
 [gd_scene format=3 uid="uid://d0dr0nm1g0jtu"]
 
-[ext_resource type="Script" uid="uid://764fv2im4ioq" path="res://scene/menus/hud.gd" id="1_soch2"]
+[ext_resource type="Script" uid="uid://3iy3f5ur4kxk" path="res://script/hud.gd" id="1_soch2"]
+[ext_resource type="Script" uid="uid://cgpiqfwpxy8j8" path="res://script/time_manager.gd" id="2_82xvc"]
+[ext_resource type="Script" uid="uid://db7e4t24cdga5" path="res://script/mood.gd" id="3_eje8l"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_soch2"]
+font_size = 32
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_qb3ww"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1140548135]
-script = ExtResource("1_soch2")
 
 [node name="Control" type="Control" parent="." unique_id=1745073132]
 layout_mode = 3
@@ -18,12 +26,54 @@ offset_right = 577.0
 offset_bottom = 322.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_soch2")
 
-[node name="timeLabel" type="Label" parent="Control" unique_id=980440714]
+[node name="ClockLabel" type="Label" parent="Control" unique_id=980440714]
+layout_mode = 0
+offset_left = 805.0
+offset_top = 23.0
+offset_right = 1151.0
+offset_bottom = 46.0
+size_flags_vertical = 6
+label_settings = SubResource("LabelSettings_soch2")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_82xvc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=605772425]
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
-offset_left = -272.0
-offset_bottom = 54.0
+anchor_bottom = 1.0
+offset_left = -319.0
+offset_top = -207.0
 grow_horizontal = 0
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-10, 0)
+alignment = 1
+
+[node name="hungerBar" type="ProgressBar" parent="Control/VBoxContainer" unique_id=1497121349]
+layout_mode = 2
+theme = SubResource("Theme_qb3ww")
+fill_mode = 1
+script = ExtResource("3_eje8l")
+
+[node name="funBar" type="ProgressBar" parent="Control/VBoxContainer" unique_id=823870576]
+layout_mode = 2
+theme = SubResource("Theme_qb3ww")
+fill_mode = 1
+script = ExtResource("3_eje8l")
+
+[node name="hygieneBar" type="ProgressBar" parent="Control/VBoxContainer" unique_id=768396676]
+layout_mode = 2
+theme = SubResource("Theme_qb3ww")
+fill_mode = 1
+script = ExtResource("3_eje8l")
+
+[node name="sleepBar" type="ProgressBar" parent="Control/VBoxContainer" unique_id=537757837]
+layout_mode = 2
+fill_mode = 1
+script = ExtResource("3_eje8l")
