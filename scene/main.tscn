@@ -17,3 +17,5 @@ scale = Vector2(1.25, 1.25)
 zoom = Vector2(1.5, 1.5)
 
 [node name="CanvasLayer" parent="." unique_id=1140548135 instance=ExtResource("3_wp4xf")]
+
+[node name="Node2D" type="Node2D" parent="." unique_id=50045105]
