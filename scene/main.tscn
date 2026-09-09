@@ -11,7 +11,7 @@ position = Vector2(-166, -69)
 
 [node name="player" parent="." unique_id=933381913 instance=ExtResource("1_itxqv")]
 position = Vector2(548, 347)
-scale = Vector2(1.25, 1.25)
+scale = Vector2(1.55, 1.55)
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=497314742]
 zoom = Vector2(1.5, 1.5)
