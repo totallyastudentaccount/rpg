@@ -60,20 +60,24 @@ layout_mode = 2
 theme = SubResource("Theme_qb3ww")
 fill_mode = 1
 script = ExtResource("3_eje8l")
+decay_per_minute = 0.06
 
 [node name="funBar" type="ProgressBar" parent="Control/VBoxContainer" unique_id=823870576]
 layout_mode = 2
 theme = SubResource("Theme_qb3ww")
 fill_mode = 1
 script = ExtResource("3_eje8l")
+decay_per_minute = 0.05
 
 [node name="hygieneBar" type="ProgressBar" parent="Control/VBoxContainer" unique_id=768396676]
 layout_mode = 2
 theme = SubResource("Theme_qb3ww")
 fill_mode = 1
 script = ExtResource("3_eje8l")
+decay_per_minute = 0.05
 
 [node name="sleepBar" type="ProgressBar" parent="Control/VBoxContainer" unique_id=537757837]
 layout_mode = 2
 fill_mode = 1
 script = ExtResource("3_eje8l")
+decay_per_minute = 0.04

@@ -14,3 +14,7 @@ func _on_minute_passed(_hour: int, _minute: int) -> void:
 	for child in mood_container.get_children():
 		if child is MoodBar:
 			child.apply_decay()
+
+
+func _on_decay_timer_timeout() -> void:
+	pass # Replace with function body.
