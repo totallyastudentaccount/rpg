@@ -356,5 +356,9 @@ scale = Vector2(0.15856777, 0.13777778)
 texture = ExtResource("2_ykks0")
 
 [node name="BaseDoor" parent="." unique_id=1332071849 instance=ExtResource("2_fji3n")]
+<<<<<<< Updated upstream
 position = Vector2(208.5, 96)
+=======
+position = Vector2(208, 100)
+>>>>>>> Stashed changes
 scale = Vector2(2, 2)
