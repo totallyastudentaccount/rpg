@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b3yj1togmeec5"]
+
+[ext_resource type="Script" uid="uid://kkyhq54fip7m" path="res://scene/money.gd" id="1_wbkft"]
+[ext_resource type="Script" uid="uid://crcpk0ohg2qht" path="res://scene/moneyclick.gd" id="2_fgl4h"]
+
+[node name="Money" type="Node2D" unique_id=456678733]
+script = ExtResource("1_wbkft")
+
+[node name="Control" type="Control" parent="." unique_id=1065189088]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="Control" unique_id=1630593684]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("2_fgl4h")
+
+[node name="MoneyLabel" type="Label" parent="Control/Button" unique_id=899912773]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 227.0
+offset_right = 204.0
+offset_bottom = 250.0
+text = "Money: $0"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Control/Button/MoneyLabel" unique_id=1972975351]
