@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://owfwki6y148c"]
+
+[ext_resource type="Texture2D" uid="uid://ditp26vsjplbm" path="res://assets/boundaries/CainCash.png" id="1_8fxug"]
+
+[node name="CainCash" type="Sprite2D" unique_id=1090987319]
+scale = Vector2(0.15856777, 0.13777778)
+texture = ExtResource("1_8fxug")
