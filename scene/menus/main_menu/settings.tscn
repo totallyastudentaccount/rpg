@@ -1,3 +1,116 @@
 [gd_scene format=3 uid="uid://dsqc3gaqm4ho2"]
 
-[node name="Settings" type="Node2D" unique_id=1156029871]
+[ext_resource type="Script" uid="uid://ucktxkce4mv2" path="res://OptionMenu.gd" id="1_mdfx3"]
+
+[node name="Control" type="Control" unique_id=1734727403]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mdfx3")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=621719246]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.16924527, 0.16924533, 0.16924518, 1)
+
+[node name="Label" type="Label" parent="." unique_id=860693105]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -124.0
+offset_top = 10.0
+offset_right = 124.0
+offset_bottom = 98.0
+grow_horizontal = 2
+theme_override_constants/line_spacing = 2
+theme_override_font_sizes/font_size = 64
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=2084976631]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -179.5
+offset_top = -40.0
+offset_right = 179.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 100
+
+[node name="Button" type="Button" parent="HBoxContainer2" unique_id=1336182594]
+layout_mode = 2
+text = "Settings"
+
+[node name="Button2" type="Button" parent="HBoxContainer2" unique_id=697414486]
+layout_mode = 2
+text = "Saves"
+
+[node name="Button3" type="Button" parent="HBoxContainer2" unique_id=210411402]
+layout_mode = 2
+text = "Back"
+
+[node name="Button4" type="Button" parent="HBoxContainer2" unique_id=1201852659]
+layout_mode = 2
+text = "Control"
+
+[node name="Button5" type="Button" parent="HBoxContainer2" unique_id=882797623]
+layout_mode = 2
+text = "Credits"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=804580128]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 47.0
+offset_top = 95.0
+offset_right = 417.0
+offset_bottom = -472.0
+grow_vertical = 2
+
+[node name="MusicVolume" type="HBoxContainer" parent="VBoxContainer" unique_id=675524950]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_position = Vector2(50, 100)
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="VBoxContainer/MusicVolume" unique_id=1217562087]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/MusicVolume" unique_id=856579793]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 6.98
+
+[node name="SoundVolume" type="HBoxContainer" parent="VBoxContainer" unique_id=247050764]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_position = Vector2(50, 100)
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="VBoxContainer/SoundVolume" unique_id=1444312230]
+layout_mode = 2
+text = "Sound Volume"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/SoundVolume" unique_id=372202003]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 6.36

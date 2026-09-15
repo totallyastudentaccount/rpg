@@ -8,7 +8,7 @@ atlas = ExtResource("2_pp5g7")
 region = Rect2(192, 16, 16, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bm3lg"]
-size = Vector2(16, 24.5)
+size = Vector2(8, 10)
 
 [node name="BaseDoor" type="Area2D" unique_id=1332071849]
 script = ExtResource("1_ox5o8")
@@ -19,7 +19,7 @@ texture = SubResource("AtlasTexture_wc7jt")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=617737053]
-position = Vector2(0, 4.25)
+position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_bm3lg")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
