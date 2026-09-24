@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c6rcka817a3j4"]
+
+[ext_resource type="PackedScene" uid="uid://bmm45q7qm0oxi" path="res://scene/Characters/player.tscn" id="1_itxqv"]
+[ext_resource type="PackedScene" uid="uid://c4e5dikws5en2" path="res://scene/maps/house.tscn" id="1_v0l8b"]
+[ext_resource type="PackedScene" uid="uid://d0dr0nm1g0jtu" path="res://scene/menus/HUD.tscn" id="3_wp4xf"]
+[ext_resource type="PackedScene" uid="uid://cv0i255h2ivfm" path="res://scene/computer/Computer.tscn" id="4_brvut"]
+
+[node name="main" type="Node2D" unique_id=433232691]
+
+[node name="house" parent="." unique_id=1062916822 instance=ExtResource("1_v0l8b")]
+position = Vector2(-166, -69)
+
+[node name="Computer" parent="." unique_id=596755076 instance=ExtResource("4_brvut")]
+position = Vector2(464, 174)
+
+[node name="player" parent="." unique_id=933381913 instance=ExtResource("1_itxqv")]
+position = Vector2(548, 347)
+scale = Vector2(1.55, 1.55)
+
+[node name="Camera2D" type="Camera2D" parent="player" unique_id=497314742]
+zoom = Vector2(1.5, 1.5)
+
+[node name="CanvasLayer" parent="." unique_id=1140548135 instance=ExtResource("3_wp4xf")]

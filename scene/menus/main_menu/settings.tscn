@@ -114,3 +114,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 6.36
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1449555280]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=165790644]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Cheats"
+horizontal_alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer" unique_id=1319707944]
+layout_mode = 2

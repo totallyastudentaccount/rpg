@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://3iy3f5ur4kxk" path="res://script/hud.gd" id="1_soch2"]
 [ext_resource type="Script" uid="uid://cgpiqfwpxy8j8" path="res://script/time_manager.gd" id="2_82xvc"]
 [ext_resource type="Script" uid="uid://db7e4t24cdga5" path="res://script/mood.gd" id="3_eje8l"]
+[ext_resource type="PackedScene" uid="uid://d2l86vmwtu8qj" path="res://scene/money.tscn" id="4_u2raw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_soch2"]
 font_size = 32
@@ -81,3 +82,9 @@ layout_mode = 2
 fill_mode = 1
 script = ExtResource("3_eje8l")
 decay_per_minute = 0.04
+
+[node name="Control2" parent="." unique_id=837803206 instance=ExtResource("4_u2raw")]
+offset_left = -66.0
+offset_top = 255.0
+offset_right = -26.0
+offset_bottom = 295.0
