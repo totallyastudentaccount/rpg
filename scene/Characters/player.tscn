@@ -230,7 +230,7 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bm3lg"]
 
-[node name="player" type="CharacterBody2D" unique_id=782805993]
+[node name="player" type="CharacterBody2D" unique_id=782805993 groups=["Player"]]
 script = ExtResource("1_fvtld")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1402188898]

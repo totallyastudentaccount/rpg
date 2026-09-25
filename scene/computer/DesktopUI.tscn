@@ -2,17 +2,16 @@
 
 [ext_resource type="Script" uid="uid://ch854b2pvsvc3" path="res://scene/computer/desktop_ui.gd" id="1_x288o"]
 
-[node name="DesktopUi" type="Control" unique_id=1099400202]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="DesktopUi" type="Window" unique_id=1896415465]
+oversampling_override = 1.0
+title = "Desktop"
+initial_position = 1
+size = Vector2i(800, 500)
+transient = true
+popup_window = true
 script = ExtResource("1_x288o")
 
 [node name="Background" type="ColorRect" parent="." unique_id=636847903]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,17 +19,16 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="IconGrid" type="GridContainer" parent="." unique_id=1470090434]
-layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="AppContainer" type="Control" parent="." unique_id=1300514015]
+layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="TaskBar" type="PanelContainer" parent="." unique_id=39813146]
-layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0

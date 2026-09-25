@@ -122,13 +122,6 @@ fill_mode = 1
 script = ExtResource("3_eje8l")
 decay_per_minute = 0.04
 
-<<<<<<< Updated upstream
-[node name="Control2" parent="." unique_id=837803206 instance=ExtResource("4_u2raw")]
-offset_left = -66.0
-offset_top = 255.0
-offset_right = -26.0
-offset_bottom = 295.0
-=======
 [node name="Label" type="Label" parent="Control/VBoxContainer/sleepBar" unique_id=516722025]
 layout_mode = 1
 anchors_preset = 15
@@ -141,4 +134,9 @@ offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Sleep"
->>>>>>> Stashed changes
+
+[node name="Control2" parent="." unique_id=837803206 instance=ExtResource("4_u2raw")]
+offset_left = -66.0
+offset_top = 255.0
+offset_right = -26.0
+offset_bottom = 295.0

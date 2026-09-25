@@ -1,28 +1,11 @@
-<<<<<<< Updated upstream
-[gd_scene format=3 uid="uid://c6rcka817a3j4"]
-
-[ext_resource type="PackedScene" uid="uid://bmm45q7qm0oxi" path="res://scene/Characters/player.tscn" id="1_itxqv"]
-[ext_resource type="PackedScene" uid="uid://c4e5dikws5en2" path="res://scene/maps/house.tscn" id="1_v0l8b"]
-[ext_resource type="PackedScene" uid="uid://d0dr0nm1g0jtu" path="res://scene/menus/HUD.tscn" id="3_wp4xf"]
-[ext_resource type="PackedScene" uid="uid://cv0i255h2ivfm" path="res://scene/computer/Computer.tscn" id="4_brvut"]
-
-[node name="main" type="Node2D" unique_id=433232691]
-
-[node name="house" parent="." unique_id=1062916822 instance=ExtResource("1_v0l8b")]
-position = Vector2(-166, -69)
-
-[node name="Computer" parent="." unique_id=596755076 instance=ExtResource("4_brvut")]
-position = Vector2(464, 174)
-
-[node name="player" parent="." unique_id=933381913 instance=ExtResource("1_itxqv")]
-=======
-[gd_scene format=3 uid="uid://cc7ts35cosrax"]
+[gd_scene format=3 uid="uid://dx73hs7scco33"]
 
 [ext_resource type="PackedScene" uid="uid://c4e5dikws5en2" path="res://scene/maps/house.tscn" id="1_w30hf"]
 [ext_resource type="PackedScene" uid="uid://bmm45q7qm0oxi" path="res://scene/Characters/player.tscn" id="2_1eg0i"]
 [ext_resource type="PackedScene" uid="uid://d0dr0nm1g0jtu" path="res://scene/menus/HUD.tscn" id="3_4raqg"]
 [ext_resource type="PackedScene" uid="uid://owfwki6y148c" path="res://scene/misc/cain_cash.tscn" id="4_1eg0i"]
 [ext_resource type="PackedScene" uid="uid://cx5pyjfcr6yi7" path="res://scene/money/money.tscn" id="4_w30hf"]
+[ext_resource type="PackedScene" uid="uid://cv0i255h2ivfm" path="res://scene/computer/Computer.tscn" id="6_4j5ol"]
 
 [node name="main" type="Node2D" unique_id=433232691]
 
@@ -30,16 +13,12 @@ position = Vector2(464, 174)
 position = Vector2(-166, -69)
 
 [node name="player" parent="." unique_id=933381913 instance=ExtResource("2_1eg0i")]
->>>>>>> Stashed changes
 position = Vector2(548, 347)
 scale = Vector2(1.55, 1.55)
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=497314742]
 zoom = Vector2(1.5, 1.5)
 
-<<<<<<< Updated upstream
-[node name="CanvasLayer" parent="." unique_id=1140548135 instance=ExtResource("3_wp4xf")]
-=======
 [node name="CainCash" parent="player" unique_id=1090987319 instance=ExtResource("4_1eg0i")]
 position = Vector2(195.48389, 34.193542)
 scale = Vector2(0.118802056, 0.11899642)
@@ -51,4 +30,7 @@ scale = Vector2(0.6451613, 0.6451613)
 [node name="CanvasLayer" parent="." unique_id=1140548135 instance=ExtResource("3_4raqg")]
 
 [node name="Node2D" type="Node2D" parent="." unique_id=50045105]
->>>>>>> Stashed changes
+
+[node name="Computer" parent="." unique_id=596755076 instance=ExtResource("6_4j5ol")]
+position = Vector2(475, 155)
+scale = Vector2(0.5, 0.5)

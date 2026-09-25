@@ -1,48 +1,41 @@
 extends Area2D
 
-@export var desktop_scene: PackedScene 
-@export var installed_apps: Array[AppData] = []
-@export var is_office_computer: bool = false 
-
-@onready var interaction_prompt: Label = $InteractionPrompt
+# Preload the exact path to your desktop UI scene
+const DESKTOP_UI_SCENE = preload("res://scene/computer/DesktopUI.tscn") 
 
 var player_in_range: bool = false
 
-func _ready() -> void:
+# Access your text prompt child node
+@onready var prompt = $InteractionPrompt
+
+func _ready():
+	# Hide the "Press E to interact" text when the game starts
+	prompt.visible = false
+	
+	# Connect the Area2D signals to detect when objects walk inside
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
-	if interaction_prompt:
-		interaction_prompt.visible = false
 
-func _on_body_entered(body: Node2D) -> void:
-	print("Something entered area: ", body.name)
-	print("Is body in 'Player' group? ", body.is_in_group("player"))
-	if body.is_in_group("Player"):
+func _process(_delta):
+	# Check if player is close by AND presses your interact action ("E")
+	if player_in_range and Input.is_action_just_pressed("interact"):
+		open_desktop()
+
+func _on_body_entered(body):
+	# Checks if the object entering is the player node or part of the Player group
+	if body.name == "player" or body.is_in_group("Player"):
 		player_in_range = true
-		if interaction_prompt:
-			interaction_prompt.visible = true
+		prompt.visible = true
 
-func _on_body_exited(body: Node2D) -> void:
-	if body.is_in_group("player"):
+func _on_body_exited(body):
+	# Turn off interaction flags when the player walks away
+	if body.name == "player" or body.is_in_group("Player"):
 		player_in_range = false
-		if interaction_prompt:
-			interaction_prompt.visible = false
+		prompt.visible = false
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact"):
-		print("Interact pressed! Player in range? ", player_in_range)
-		if player_in_range:
-			open_computer()
-
-func open_computer() -> void:
-	print("open_computer() called. Desktop scene assigned? ", desktop_scene != null)
-	if get_tree().root.has_node("ActiveDesktop"):
-		print("ActiveDesktop already exists!")
-		return
-		
-	if desktop_scene:
-		var desktop = desktop_scene.instantiate()
-		desktop.name = "ActiveDesktop"
-		get_tree().root.add_child(desktop)
-		print("Desktop spawned successfully!")
-		desktop.setup_desktop(installed_apps, is_office_computer)
+func open_desktop():
+	# Spawn a clone of your DesktopUI layout
+	var desktop_instance = DESKTOP_UI_SCENE.instantiate()
+	
+	# Add it to the tree root so it displays directly on top of your game window
+	get_tree().root.add_child(desktop_instance)

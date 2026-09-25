@@ -1,4 +1,4 @@
-extends Control
+extends Window  # Changed from Control to Window
 
 @onready var icon_grid: GridContainer = $IconGrid
 @onready var app_container: Control = $AppContainer
@@ -6,6 +6,10 @@ extends Control
 
 var is_in_office: bool = false
 var active_app_instance: Node = null
+
+func _ready() -> void:
+	# Automatically connect the native OS 'X' close button to shut down the computer
+	close_requested.connect(func(): queue_free())
 
 # Called by Computer.gd when opened
 func setup_desktop(available_apps: Array[AppData], in_office: bool) -> void:
@@ -37,20 +41,26 @@ func launch_app(app: AppData) -> void:
 	close_current_app()
 	
 	if app.app_scene:
-		# Create a window wrapper for the app UI
-		var window_frame = PanelContainer.new()
-		window_frame.name = "WindowFrame"
-		window_frame.custom_minimum_size = Vector2(600, 400)
+		# Create a sub-window wrapper for the app UI inside the desktop
+		var sub_window = Window.new()
+		sub_window.title = app.app_name
+		sub_window.transient = true
+		sub_window.resizable = true
+		sub_window.size = Vector2i(600, 400)
 		
-		# Center the window on screen
-		window_frame.anchors_preset = Control.PRESET_CENTER
+		# Center the sub-window relative to this main desktop window
+		sub_window.position = position + (size / 2) - (sub_window.size / 2)
+		
+		# Close app when its sub-window close button is clicked
+		sub_window.close_requested.connect(close_current_app)
 		
 		# Instantiate the app inside the window frame
 		var app_content = app.app_scene.instantiate()
-		window_frame.add_child(app_content)
+		sub_window.add_child(app_content)
 		
-		app_container.add_child(window_frame)
-		active_app_instance = window_frame
+		# Add it to the container
+		app_container.add_child(sub_window)
+		active_app_instance = sub_window
 		
 		# Update taskbar display
 		active_app_label.text = "Running: " + app.app_name
