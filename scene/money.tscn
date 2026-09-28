@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://d2l86vmwtu8qj"]
+
+[node name="Control" type="Control" unique_id=837803206]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="." unique_id=1121461963]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="MoneyLabel" type="Label" parent="Button" unique_id=426619483]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 227.0
+offset_right = 204.0
+offset_bottom = 250.0
+text = "Money: $0"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Button/MoneyLabel" unique_id=1742462842]

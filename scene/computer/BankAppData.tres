@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="AppData" format=3 uid="uid://blxb3dhss00jj"]
+
+[ext_resource type="Script" uid="uid://kpepf6mm3eoh" path="res://AppData.gd" id="1_hmwqv"]
+
+[resource]
+script = ExtResource("1_hmwqv")
+metadata/_custom_type_script = "uid://kpepf6mm3eoh"
