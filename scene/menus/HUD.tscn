@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://3iy3f5ur4kxk" path="res://script/hud.gd" id="1_soch2"]
 [ext_resource type="Script" uid="uid://cgpiqfwpxy8j8" path="res://script/time_manager.gd" id="2_82xvc"]
 [ext_resource type="Script" uid="uid://db7e4t24cdga5" path="res://script/mood.gd" id="3_eje8l"]
+[ext_resource type="PackedScene" uid="uid://d2l86vmwtu8qj" path="res://scene/money.tscn" id="4_u2raw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_soch2"]
 font_size = 32
@@ -62,12 +63,38 @@ fill_mode = 1
 script = ExtResource("3_eje8l")
 decay_per_minute = 0.06
 
+[node name="Label" type="Label" parent="Control/VBoxContainer/hungerBar" unique_id=1558516200]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = 2.0
+offset_right = 60.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Hunger"
+
 [node name="funBar" type="ProgressBar" parent="Control/VBoxContainer" unique_id=823870576]
 layout_mode = 2
 theme = SubResource("Theme_qb3ww")
 fill_mode = 1
 script = ExtResource("3_eje8l")
 decay_per_minute = 0.05
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/funBar" unique_id=323382422]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = 2.0
+offset_right = 60.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Fun"
 
 [node name="hygieneBar" type="ProgressBar" parent="Control/VBoxContainer" unique_id=768396676]
 layout_mode = 2
@@ -76,8 +103,40 @@ fill_mode = 1
 script = ExtResource("3_eje8l")
 decay_per_minute = 0.05
 
+[node name="Label" type="Label" parent="Control/VBoxContainer/hygieneBar" unique_id=2032581038]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = 2.0
+offset_right = 60.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Hygiene"
+
 [node name="sleepBar" type="ProgressBar" parent="Control/VBoxContainer" unique_id=537757837]
 layout_mode = 2
 fill_mode = 1
 script = ExtResource("3_eje8l")
 decay_per_minute = 0.04
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/sleepBar" unique_id=516722025]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = 2.0
+offset_right = 60.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Sleep"
+
+[node name="Control2" parent="." unique_id=837803206 instance=ExtResource("4_u2raw")]
+offset_left = -66.0
+offset_top = 255.0
+offset_right = -26.0
+offset_bottom = 295.0
