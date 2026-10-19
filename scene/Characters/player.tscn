@@ -230,10 +230,10 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bm3lg"]
 
-[node name="player" type="CharacterBody2D" unique_id=782805993 groups=["Player"]]
+[node name="player" type="CharacterBody2D" unique_id=782805993 groups=["Player", "player"]]
 script = ExtResource("1_fvtld")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1402188898]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1402188898 groups=["Player", "player"]]
 sprite_frames = SubResource("SpriteFrames_wc7jt")
 animation = &"back_idle"
 frame_progress = 0.8785942

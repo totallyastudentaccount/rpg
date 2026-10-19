@@ -5,12 +5,19 @@ extends CharacterBody2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D 
 
 var last_direction: String = "down" 
-
+var is_using_computer: bool = false
 func _physics_process(_delta: float) -> void: 
+	if is_using_computer:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
+		
 	var direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down") 
 	velocity = direction * speed 
 	move_and_slide() 
 	update_animation(direction) 
+	  	
+
 
 func update_animation(direction: Vector2) -> void: 
 	if direction == Vector2.ZERO: 

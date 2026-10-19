@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bk8130vctyfr5"]
+
+[ext_resource type="Texture2D" uid="uid://c2toy2ejc52at" path="res://icon.svg" id="1_8xrg0"]
+
+[sub_resource type="GDScript" id="GDScript_8xrg0"]
+resource_name = "FuelBox"
+script/source = "extends Area2D
+
+@export var anagram_word: String = \"SPACE\"
+@export var scrambled_word: String = \"CAPSE\"
+
+var is_activated: bool = false
+
+signal open_puzzle(scrambled: String, answer: String, box_ref: Area2D)
+
+func _ready() -> void:
+	body_entered.connect(_on_body_entered)
+
+func _on_body_entered(body: Node2D) -> void:
+	print(\"--- COLLISION DETECTED ---\")
+	print(\"Node touched box: \", body.name)
+	print(\"Is node in 'Player' group? \", body.is_in_group(\"Player\"))
+	
+	if body.is_in_group(\"Player\") and not is_activated:
+		print(\"Player validated! Emitting open_puzzle signal...\")
+		open_puzzle.emit(scrambled_word, anagram_word, self)
+	elif is_activated:
+		print(\"FuelBox is already activated.\")
+	else:
+		print(\"Collision ignored because node is missing the 'Player' group.\")
+
+func activate() -> void:
+	is_activated = true
+	$Sprite2D.modulate = Color(0, 1, 0)
+	print(\"Fuel Box activated successfully!\")
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8x53b"]
+size = Vector2(24, 24)
+
+[node name="Fuelbox" type="Area2D" unique_id=1575430995]
+script = SubResource("GDScript_8xrg0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=806742994]
+scale = Vector2(0.1875, 0.1875)
+texture = ExtResource("1_8xrg0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=934727801]
+shape = SubResource("RectangleShape2D_8x53b")

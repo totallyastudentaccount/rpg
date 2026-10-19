@@ -24,6 +24,11 @@ TimeManager="*uid://cgpiqfwpxy8j8"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[global_group]
+
+FuelBoxes=""
+Player=""
+
 [input]
 
 ui_left={

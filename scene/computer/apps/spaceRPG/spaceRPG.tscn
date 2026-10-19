@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://cnhmsljbp55uo"]
+
+[ext_resource type="PackedScene" uid="uid://bk8130vctyfr5" path="res://scene/computer/apps/spaceRPG/fuelbox.tscn" id="1_ec2sf"]
+[ext_resource type="PackedScene" uid="uid://crtpvw6xfdlj6" path="res://scene/computer/apps/spaceRPG/spacePC.tscn" id="1_kgdjy"]
+[ext_resource type="PackedScene" uid="uid://dxlmnaocixhso" path="res://scene/computer/apps/spaceRPG/Anagram.tscn" id="3_8olf6"]
+
+[sub_resource type="GDScript" id="GDScript_w8qno"]
+resource_name = "GameManager"
+script/source = "# GameManager.gd
+extends Node2D
+
+@export var total_fuel_boxes: int = 3
+@export_file(\"*.tscn\") var next_level_scene: String  # Path to the next level
+
+var activated_boxes_count: int = 0
+@onready var puzzle_ui: Control = $CanvasLayer/Anagram/Control
+
+func _ready() -> void:
+	# Wait one frame to ensure all child nodes are fully loaded into the tree
+	await get_tree().process_frame
+	
+	var fuel_boxes = get_tree().get_nodes_in_group(\"FuelBoxes\")
+	print(\"Found fuel boxes in group: \", fuel_boxes.size())
+	
+	for box in fuel_boxes:
+		if box.has_signal(\"open_puzzle\"):
+			if not box.open_puzzle.is_connected(_on_open_puzzle):
+				box.open_puzzle.connect(_on_open_puzzle)
+		else:
+			print(\"Warning: Node in FuelBoxes group missing open_puzzle signal: \", box.name)
+			
+	if puzzle_ui:
+		puzzle_ui.puzzle_solved.connect(_on_puzzle_solved)
+
+func _on_open_puzzle(scrambled: String, answer: String, box: Area2D) -> void:
+	puzzle_ui.start_puzzle(scrambled, answer, box)
+
+func _on_puzzle_solved(box: Area2D) -> void:
+	activated_boxes_count += 1
+	if activated_boxes_count >= total_fuel_boxes:
+		game_win()
+
+func game_win() -> void:
+	print(\"Level Complete!\")
+	if next_level_scene != \"\":
+		get_tree().change_scene_to_file(next_level_scene)
+	else:
+		print(\"You beat all levels!\")
+"
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bm3lg"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bm3lg"]
+distance = -384.0
+
+[node name="SpaceRpg" type="Node2D" unique_id=349912531]
+script = SubResource("GDScript_w8qno")
+
+[node name="Fuelbox3" parent="." unique_id=1575430995 groups=["FuelBoxes"] instance=ExtResource("1_ec2sf")]
+position = Vector2(246, 344)
+
+[node name="Fuelbox" parent="." unique_id=747271704 groups=["FuelBoxes"] instance=ExtResource("1_ec2sf")]
+position = Vector2(374, 323)
+anagram_word = "TSA"
+scrambled_word = "SAT"
+
+[node name="Fuelbox2" parent="." unique_id=573177515 groups=["FuelBoxes"] instance=ExtResource("1_ec2sf")]
+position = Vector2(669, 323)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2012954839]
+physics_material_override = SubResource("PhysicsMaterial_bm3lg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=917132399]
+position = Vector2(530, 0)
+shape = SubResource("WorldBoundaryShape2D_bm3lg")
+
+[node name="Spacesuit" parent="." unique_id=681027859 groups=["Player"] instance=ExtResource("1_kgdjy")]
+position = Vector2(523, 306)
+wall_min_slide_angle = 0.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1468499812]
+
+[node name="Anagram" parent="CanvasLayer" unique_id=1526580860 instance=ExtResource("3_8olf6")]
