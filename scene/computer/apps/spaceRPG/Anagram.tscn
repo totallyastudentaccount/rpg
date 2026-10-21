@@ -7,6 +7,10 @@ script/source = "extends Control
 @onready var clue_label: Label = $Label
 @onready var input_field: LineEdit = $LineEdit
 
+# Optional: Add a Label node named \"ErrorLabel\" in your scene hierarchy
+# and uncomment the next line to display error messages on screen:
+# @onready var error_label: Label = $ErrorLabel
+
 var current_target_word: String = \"\"
 var current_box: Area2D = null
 
@@ -19,12 +23,15 @@ func start_puzzle(scrambled: String, answer: String, box: Area2D) -> void:
 	print(\"--- START PUZZLE CALLED IN UI ---\")
 	current_target_word = answer.strip_edges().to_upper()
 	current_box = box
+	
+	# Set text and force dark color for white background
 	clue_label.text = \"Unscramble: \" + scrambled
+	clue_label.add_theme_color_override(\"font_color\", Color(0, 0, 0)) # Pure Black
+	
 	input_field.text = \"\"
 	
 	show()
 	input_field.grab_focus()
-	print(\"UI show() executed. Control visible state: \", visible)
 
 func _on_button_pressed() -> void:
 	var user_guess = input_field.text.strip_edges().to_upper()
@@ -37,6 +44,13 @@ func _on_button_pressed() -> void:
 		puzzle_solved.emit(current_box)
 	else:
 		print(\"Incorrect guess.\")
+		# Highlight wrong input by clearing field and showing prompt
+		input_field.text = \"\"
+		input_field.placeholder_text = \"Incorrect! Try again...\"
+		input_field.grab_focus()
+		
+		# If using an ErrorLabel node:
+		# if error_label: error_label.text = \"Incorrect! Try again.\"
 "
 
 [node name="Anagram" type="CanvasLayer" unique_id=1526580860]

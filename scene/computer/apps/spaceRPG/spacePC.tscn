@@ -4,30 +4,91 @@
 
 [sub_resource type="GDScript" id="GDScript_f43vj"]
 resource_name = "Movements"
-script/source = "extends CharacterBody2D
+script/source = "# Player.gd
+extends CharacterBody2D
 
+# --- Top-Down Movement Parameters ---
+@export var max_speed: float = 200.0
+@export var acceleration: float = 1200.0  # Controls how quickly you reach max speed
+@export var friction: float = 800.0       # Controls smooth deceleration/stopping
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+# --- Rocket Thruster & Gravity Parameters ---
+@export var max_fuel: float = 2.0
+@export var boost_accel: float = -900.0   # Smooth upward thrust (no instant jump)
+@export var rising_gravity: float = 600.0  # Lower gravity while thrusting up
+@export var falling_gravity: float = 1800.0 # High gravity for a snappy, fast fall
+@export var max_fall_speed: float = 800.0 # Terminal velocity cap
+
+var current_fuel: float = max_fuel
+var is_boosting: bool = false
+
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis(\"ui_left\", \"ui_right\")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	handle_smooth_movement(delta)
+	handle_rocket_thrust(delta)
+	#update_animations()
 	move_and_slide()
+
+func handle_smooth_movement(delta: float) -> void:
+	# Get 8-way directional input
+	var input_vector := Input.get_vector(\"ui_left\", \"ui_right\", \"ui_up\", \"ui_down\")
+	
+	if input_vector != Vector2.ZERO:
+		# Smoothly accelerate towards target velocity instead of snapping
+		velocity.x = move_toward(velocity.x, input_vector.x * max_speed, acceleration * delta)
+		# Allow smooth horizontal/vertical movement blending on ground or air
+		if is_on_floor() or not is_boosting:
+			velocity.y = move_toward(velocity.y, input_vector.y * max_speed, acceleration * delta)
+	else:
+		# Apply friction to smoothly slide to a stop
+		velocity.x = move_toward(velocity.x, 0.0, friction * delta)
+		if is_on_floor():
+			velocity.y = move_toward(velocity.y, 0.0, friction * delta)
+
+func handle_rocket_thrust(delta: float) -> void:
+	# Holding jump ignites thrusters smoothly
+	if Input.is_action_pressed(\"ui_accept\") and current_fuel > 0:
+		is_boosting = true
+		current_fuel -= delta
+		# Apply continuous upward acceleration instead of an instant pop
+		velocity.y += boost_accel * delta
+	else:
+		is_boosting = false
+
+	# --- Gravity Handling ---
+	if not is_on_floor():
+		if velocity.y > 0:
+			# Falling: Apply strong gravity for a fast, crisp descent
+			velocity.y += falling_gravity * delta
+		else:
+			# Rising: Apply lighter gravity for smooth rocket ascension
+			velocity.y += rising_gravity * delta
+			
+		# Cap peak falling speed
+		velocity.y = min(velocity.y, max_fall_speed)
+	else:
+		# Recharge fuel when grounded
+		current_fuel = move_toward(current_fuel, max_fuel, delta * 3.0)
+
+#func update_animations() -> void:
+	#if sprite == null:
+		#return
+#
+	#if is_boosting:
+		#if sprite.sprite_frames.has_animation(\"boost\"):
+			#sprite.play(\"boost\")
+	#elif velocity.length() > 10.0:
+		#if abs(velocity.x) > abs(velocity.y):
+			#sprite.play(\"walk_right\")
+			#sprite.flip_h = (velocity.x < 0)
+		#else:
+			#if velocity.y > 0:
+				#sprite.play(\"walk_down\")
+			#else:
+				#sprite.play(\"walk_up\")
+	#else:
+		#sprite.play(\"idle\")
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kbbvt"]
