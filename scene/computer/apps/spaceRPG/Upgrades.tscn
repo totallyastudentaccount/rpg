@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://c7fhiofftwsk7"]
+
+[ext_resource type="Texture2D" uid="uid://c2toy2ejc52at" path="res://icon.svg" id="1_up0xt"]
+
+[node name="Upgrades" type="Control" unique_id=336744926]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1824733426]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect" unique_id=1381275669]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 150
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/HBoxContainer" unique_id=1530708662]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/HBoxContainer/VBoxContainer" unique_id=296852098]
+layout_mode = 2
+texture = ExtResource("1_up0xt")
+
+[node name="Label" type="Label" parent="ColorRect/HBoxContainer/VBoxContainer" unique_id=219767897]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Booster Upgrade"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="ColorRect/HBoxContainer/VBoxContainer" unique_id=1321419190]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Upgrade"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ColorRect/HBoxContainer" unique_id=589281508]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/HBoxContainer/VBoxContainer2" unique_id=156096745]
+layout_mode = 2
+texture = ExtResource("1_up0xt")
+
+[node name="Label" type="Label" parent="ColorRect/HBoxContainer/VBoxContainer2" unique_id=1797289692]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Hint Upgrade"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="ColorRect/HBoxContainer/VBoxContainer2" unique_id=1781210955]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Upgrade"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="ColorRect/HBoxContainer" unique_id=1963897472]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/HBoxContainer/VBoxContainer3" unique_id=409684876]
+layout_mode = 2
+texture = ExtResource("1_up0xt")
+
+[node name="Label" type="Label" parent="ColorRect/HBoxContainer/VBoxContainer3" unique_id=1025647643]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Teleport Chance"
+
+[node name="Label2" type="Label" parent="ColorRect/HBoxContainer/VBoxContainer3" unique_id=931110637]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Upgrade"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="." unique_id=865601719]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -148.0
+offset_right = 81.0
+offset_bottom = -125.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Upgrades Available:"

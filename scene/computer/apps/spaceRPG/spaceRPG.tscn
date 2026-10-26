@@ -41,11 +41,8 @@ func _on_puzzle_solved(box: Area2D) -> void:
 		game_win()
 
 func game_win() -> void:
-	print(\"Level Complete!\")
-	if next_level_scene != \"\":
-		get_tree().change_scene_to_file(next_level_scene)
-	else:
-		print(\"You beat all levels!\")
+	print(\"Level Completed!\")
+	get_tree().change_scene_to_file(\"res://scene/computer/apps/spaceRPG/LevelWon.tscn\")
 "
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bm3lg"]

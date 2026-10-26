@@ -18,17 +18,26 @@ extends CharacterBody2D
 @export var rising_gravity: float = 600.0  # Lower gravity while thrusting up
 @export var falling_gravity: float = 1800.0 # High gravity for a snappy, fast fall
 @export var max_fall_speed: float = 800.0 # Terminal velocity cap
+@export var fall_limit_y: float = 1000.0  # Y position threshold that triggers Level Lost
 
 var current_fuel: float = max_fuel
 var is_boosting: bool = false
+var last_direction: String = \"down\"
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _physics_process(delta: float) -> void:
 	handle_smooth_movement(delta)
 	handle_rocket_thrust(delta)
-	#update_animations()
+	update_animations()
 	move_and_slide()
+	
+	# Check if player fell below the map
+	if global_position.y > fall_limit_y:
+		game_over()
+
+func game_over() -> void:
+	get_tree().change_scene_to_file(\"res://scene/computer/apps/spaceRPG/LevelLost.tscn\")
 
 func handle_smooth_movement(delta: float) -> void:
 	# Get 8-way directional input
@@ -71,24 +80,45 @@ func handle_rocket_thrust(delta: float) -> void:
 		# Recharge fuel when grounded
 		current_fuel = move_toward(current_fuel, max_fuel, delta * 3.0)
 
-#func update_animations() -> void:
-	#if sprite == null:
-		#return
-#
-	#if is_boosting:
-		#if sprite.sprite_frames.has_animation(\"boost\"):
-			#sprite.play(\"boost\")
-	#elif velocity.length() > 10.0:
-		#if abs(velocity.x) > abs(velocity.y):
-			#sprite.play(\"walk_right\")
-			#sprite.flip_h = (velocity.x < 0)
-		#else:
-			#if velocity.y > 0:
-				#sprite.play(\"walk_down\")
-			#else:
-				#sprite.play(\"walk_up\")
-	#else:
-		#sprite.play(\"idle\")
+func update_animations() -> void:
+	if sprite == null:
+		return
+
+	# Play rocket boost animation if active
+	if is_boosting and sprite.sprite_frames.has_animation(\"boost\"):
+		sprite.play(\"boost\")
+		return
+
+	# Movement directional animations
+	if velocity.length() > 10.0:
+		if abs(velocity.x) > abs(velocity.y):
+			if velocity.x > 0:
+				last_direction = \"right\"
+				sprite.flip_h = false
+			else:
+				last_direction = \"left\"
+				sprite.flip_h = true
+				
+			if sprite.sprite_frames.has_animation(\"side_walk\"):
+				sprite.play(\"side_walk\")
+			elif sprite.sprite_frames.has_animation(\"walk_right\"):
+				sprite.play(\"walk_right\")
+		else:
+			if velocity.y > 0:
+				last_direction = \"down\"
+				if sprite.sprite_frames.has_animation(\"front_walk\"):
+					sprite.play(\"front_walk\")
+				elif sprite.sprite_frames.has_animation(\"walk_down\"):
+					sprite.play(\"walk_down\")
+			else:
+				last_direction = \"up\"
+				if sprite.sprite_frames.has_animation(\"back_walk\"):
+					sprite.play(\"back_walk\")
+				elif sprite.sprite_frames.has_animation(\"walk_up\"):
+					sprite.play(\"walk_up\")
+	else:
+		if sprite.sprite_frames.has_animation(\"idle\"):
+			sprite.play(\"idle\")
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kbbvt"]

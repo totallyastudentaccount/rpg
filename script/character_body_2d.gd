@@ -50,3 +50,4 @@ func update_animation(direction: Vector2) -> void:
 		else: 
 			last_direction = "up" 
 			animated_sprite.play("back_walk")
+			
