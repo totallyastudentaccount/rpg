@@ -333,6 +333,8 @@ texture = ExtResource("1_ycjso")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ykks0")
 
+[sub_resource type="TileSet" id="TileSet_4jqj7"]
+
 [node name="house" type="Node2D" unique_id=1062916822]
 scale = Vector2(2, 2)
 
@@ -352,3 +354,6 @@ tile_set = SubResource("TileSet_j25fa")
 [node name="BaseDoor" parent="." unique_id=1332071849 instance=ExtResource("2_fji3n")]
 position = Vector2(208.5, 96)
 scale = Vector2(2, 2)
+
+[node name="TileMapLayer3" type="TileMapLayer" parent="." unique_id=1535842268]
+tile_set = SubResource("TileSet_4jqj7")

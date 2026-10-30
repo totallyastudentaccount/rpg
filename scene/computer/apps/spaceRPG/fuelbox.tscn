@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bk8130vctyfr5"]
 
-[ext_resource type="Texture2D" uid="uid://c2toy2ejc52at" path="res://icon.svg" id="1_8xrg0"]
+[ext_resource type="Texture2D" uid="uid://bkc35gd8sjpjl" path="res://assets/icon/battery.png" id="1_8xrg0"]
 
 [sub_resource type="GDScript" id="GDScript_8xrg0"]
 resource_name = "FuelBox"
@@ -35,15 +35,19 @@ func activate() -> void:
 	print(\"Fuel Box activated successfully!\")
 "
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0eqbb"]
+atlas = ExtResource("1_8xrg0")
+region = Rect2(552.66797, 46.36564, 31.04602, 84.44529)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8x53b"]
-size = Vector2(24, 24)
+size = Vector2(24, 56)
 
 [node name="Fuelbox" type="Area2D" unique_id=1575430995]
 script = SubResource("GDScript_8xrg0")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=806742994]
-scale = Vector2(0.1875, 0.1875)
-texture = ExtResource("1_8xrg0")
+scale = Vector2(0.70665324, 0.6532738)
+texture = SubResource("AtlasTexture_0eqbb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=934727801]
 shape = SubResource("RectangleShape2D_8x53b")
