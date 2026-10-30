@@ -51,6 +51,9 @@ func game_win() -> void:
 		get_tree().change_scene_to_file(\"res://scene/computer/apps/spaceRPG/LevelWon.tscn\")
 "
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bm3lg"]
+distance = -493.0
+
 [node name="SpaceRpg" type="Node2D" unique_id=349912531]
 script = SubResource("GDScript_w8qno")
 
@@ -70,5 +73,10 @@ scrambled_word = "SCPAHPISE"
 [node name="Spacesuit" parent="." unique_id=681027859 groups=["Player"] instance=ExtResource("1_kgdjy")]
 position = Vector2(523, 306)
 wall_min_slide_angle = 0.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=503343916]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=888194974]
+shape = SubResource("WorldBoundaryShape2D_bm3lg")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1394667762]
