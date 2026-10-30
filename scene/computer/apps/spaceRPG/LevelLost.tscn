@@ -2,23 +2,32 @@
 
 [sub_resource type="GDScript" id="GDScript_3ao4k"]
 resource_name = "LevelLost"
-script/source = "# LevelLost.gd
+script/source = "# LevelWon.gd
 extends Control
 
-@export_file(\"*.tscn\") var current_level_path: String = \"res://scene/computer/apps/spaceRPG/spaceRPG.tscn\"
+@export_file(\"*.tscn\") var next_level_path: String = \"res://scene/computer/apps/spaceRPG/level2.tscn\"
+@export_file(\"*.tscn\") var upgrades_path: String = \"res://scene/computer/apps/spaceRPG/Upgrades.tscn\"
 
-func _on_restart_button_pressed() -> void:
-	# Reload current level or change to specified scene
-	if current_level_path != \"\":
-		get_tree().change_scene_to_file(current_level_path)
+func _on_next_level_button_pressed() -> void:
+	var desktop = get_tree().get_first_node_in_group(\"DesktopUI\")
+	if desktop:
+		desktop.change_subviewport_scene(next_level_path)
 	else:
-		get_tree().reload_current_scene()
+		get_tree().change_scene_to_file(next_level_path)
 
 func _on_upgrade_button_pressed() -> void:
-	get_tree().change_scene_to_file(\"res://scene/computer/apps/spaceRPG/Upgrades.tscn\")
+	var desktop = get_tree().get_first_node_in_group(\"DesktopUI\")
+	if desktop:
+		desktop.change_subviewport_scene(upgrades_path)
+	else:
+		get_tree().change_scene_to_file(upgrades_path)
 
 func _on_quit_button_pressed() -> void:
-	get_tree().change_scene_to_file(\"res://scene/computer/apps/spaceRPG/spacePC.tscn\")
+	var desktop = get_tree().get_first_node_in_group(\"DesktopUI\")
+	if desktop:
+		desktop.close_current_app()
+	else:
+		get_tree().quit()
 "
 
 [node name="LevelLost" type="Control" unique_id=2029587869]

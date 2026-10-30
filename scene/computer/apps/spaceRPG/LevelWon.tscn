@@ -5,20 +5,29 @@ resource_name = "LevelWon"
 script/source = "# LevelWon.gd
 extends Control
 
-# Update this path if LevelWon needs to dynamically know the next scene
 @export_file(\"*.tscn\") var next_level_path: String = \"res://scene/computer/apps/spaceRPG/level2.tscn\"
+@export_file(\"*.tscn\") var upgrades_path: String = \"res://scene/computer/apps/spaceRPG/Upgrades.tscn\"
 
 func _on_next_level_button_pressed() -> void:
-	if next_level_path != \"\":
-		get_tree().change_scene_to_file(next_level_path)
+	var desktop = get_tree().get_first_node_in_group(\"DesktopUI\")
+	if desktop:
+		desktop.change_subviewport_scene(next_level_path)
 	else:
-		print(\"No next level set!\")
+		get_tree().change_scene_to_file(next_level_path)
 
 func _on_upgrade_button_pressed() -> void:
-	get_tree().change_scene_to_file(\"res://scene/computer/apps/spaceRPG/Upgrades.tscn\")
+	var desktop = get_tree().get_first_node_in_group(\"DesktopUI\")
+	if desktop:
+		desktop.change_subviewport_scene(upgrades_path)
+	else:
+		get_tree().change_scene_to_file(upgrades_path)
 
 func _on_quit_button_pressed() -> void:
-	get_tree().change_scene_to_file(\"res://scene/computer/apps/spaceRPG/spacePC.tscn\") # Or get_tree().quit()
+	var desktop = get_tree().get_first_node_in_group(\"DesktopUI\")
+	if desktop:
+		desktop.close_current_app()
+	else:
+		get_tree().quit()
 "
 
 [node name="LevelWon" type="Control" unique_id=354289387]
