@@ -22,7 +22,6 @@ extends CharacterBody2D
 
 var current_fuel: float = max_fuel
 var is_boosting: bool = false
-var last_direction: String = \"down\"
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -84,38 +83,14 @@ func update_animations() -> void:
 	if sprite == null:
 		return
 
-	# Play rocket boost animation if active
-	if is_boosting and sprite.sprite_frames.has_animation(\"boost\"):
-		sprite.play(\"boost\")
-		return
-
-	# Movement directional animations
-	if velocity.length() > 10.0:
-		if abs(velocity.x) > abs(velocity.y):
-			if velocity.x > 0:
-				last_direction = \"right\"
-				sprite.flip_h = false
-			else:
-				last_direction = \"left\"
-				sprite.flip_h = true
-				
-			if sprite.sprite_frames.has_animation(\"side_walk\"):
-				sprite.play(\"side_walk\")
-			elif sprite.sprite_frames.has_animation(\"walk_right\"):
-				sprite.play(\"walk_right\")
-		else:
-			if velocity.y > 0:
-				last_direction = \"down\"
-				if sprite.sprite_frames.has_animation(\"front_walk\"):
-					sprite.play(\"front_walk\")
-				elif sprite.sprite_frames.has_animation(\"walk_down\"):
-					sprite.play(\"walk_down\")
-			else:
-				last_direction = \"up\"
-				if sprite.sprite_frames.has_animation(\"back_walk\"):
-					sprite.play(\"back_walk\")
-				elif sprite.sprite_frames.has_animation(\"walk_up\"):
-					sprite.play(\"walk_up\")
+	# Play floating animation when moving or boosting
+	if velocity.length() > 10.0 or is_boosting:
+		if sprite.sprite_frames.has_animation(\"floating\"):
+			sprite.play(\"floating\")
+			
+		# Automatically flip sprite horizontal orientation based on movement direction
+		if velocity.x != 0:
+			sprite.flip_h = velocity.x < 0
 	else:
 		if sprite.sprite_frames.has_animation(\"idle\"):
 			sprite.play(\"idle\")
@@ -209,23 +184,26 @@ animations = [{
 "texture": SubResource("AtlasTexture_6f70q")
 }],
 "loop": 1,
-"name": &"astronaut",
+"name": &"floating",
 "speed": 10.0
 }, {
 "frames": [],
 "loop": 1,
-"name": &"default",
+"name": &"idle",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wc7jt"]
+size = Vector2(16, 52)
 
 [node name="Spacesuit" type="CharacterBody2D" unique_id=681027859]
+texture_filter = 1
 script = SubResource("GDScript_f43vj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1902846520]
 sprite_frames = SubResource("SpriteFrames_4ebf8")
-animation = &"astronaut"
+animation = &"floating"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1495284436]
+position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_wc7jt")

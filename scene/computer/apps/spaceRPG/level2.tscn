@@ -2,21 +2,20 @@
 
 [ext_resource type="PackedScene" uid="uid://bk8130vctyfr5" path="res://scene/computer/apps/spaceRPG/fuelbox.tscn" id="1_swuyl"]
 [ext_resource type="PackedScene" uid="uid://crtpvw6xfdlj6" path="res://scene/computer/apps/spaceRPG/spacePC.tscn" id="2_xnowd"]
-[ext_resource type="PackedScene" uid="uid://dxlmnaocixhso" path="res://scene/computer/apps/spaceRPG/Anagram.tscn" id="3_02mnn"]
 
 [sub_resource type="GDScript" id="GDScript_w8qno"]
 resource_name = "GameManager"
-script/source = "# GameManager.gd
-extends Node2D
+script/source = "extends Node2D
 
 @export var total_fuel_boxes: int = 3
-@export_file(\"*.tscn\") var next_level_scene: String  # Path to the next level
+@export_file(\"*.tscn\") var next_level_scene: String = \"res://scene/computer/apps/spaceRPG/level2.tscn\"
+
+const ANAGRAM_SCENE = preload(\"res://scene/computer/apps/spaceRPG/Anagram.tscn\")
 
 var activated_boxes_count: int = 0
-@onready var puzzle_ui: Control = $CanvasLayer/Anagram/Control
+@onready var canvas_layer: CanvasLayer = $CanvasLayer
 
 func _ready() -> void:
-	# Wait one frame to ensure all child nodes are fully loaded into the tree
 	await get_tree().process_frame
 	
 	var fuel_boxes = get_tree().get_nodes_in_group(\"FuelBoxes\")
@@ -28,24 +27,28 @@ func _ready() -> void:
 				box.open_puzzle.connect(_on_open_puzzle)
 		else:
 			print(\"Warning: Node in FuelBoxes group missing open_puzzle signal: \", box.name)
-			
-	if puzzle_ui:
-		puzzle_ui.puzzle_solved.connect(_on_puzzle_solved)
 
 func _on_open_puzzle(scrambled: String, answer: String, box: Area2D) -> void:
-	puzzle_ui.start_puzzle(scrambled, answer, box)
+	var puzzle_instance = ANAGRAM_SCENE.instantiate()
+	canvas_layer.add_child(puzzle_instance)
+	
+	puzzle_instance.puzzle_solved.connect(_on_puzzle_solved)
+	puzzle_instance.start_puzzle(scrambled, answer, box)
+	
 
-func _on_puzzle_solved(box: Area2D) -> void:
+func _on_puzzle_solved(_box: Area2D) -> void:
 	activated_boxes_count += 1
 	if activated_boxes_count >= total_fuel_boxes:
 		game_win()
 
 func game_win() -> void:
-	print(\"Level Complete!\")
-	if next_level_scene != \"\":
-		get_tree().change_scene_to_file(next_level_scene)
+	print(\"Level Completed!\")
+	var desktop = get_tree().get_first_node_in_group(\"DesktopUI\")
+	
+	if desktop:
+		desktop.change_subviewport_scene(\"res://scene/computer/apps/spaceRPG/LevelWon.tscn\")
 	else:
-		print(\"You beat all levels!\")
+		get_tree().change_scene_to_file(\"res://scene/computer/apps/spaceRPG/LevelWon.tscn\")
 "
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bm3lg"]
@@ -79,5 +82,3 @@ position = Vector2(523, 306)
 wall_min_slide_angle = 0.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1468499812]
-
-[node name="Anagram" parent="CanvasLayer" unique_id=1526580860 instance=ExtResource("3_02mnn")]

@@ -56,22 +56,25 @@ distance = -493.0
 
 [node name="SpaceRpg" type="Node2D" unique_id=349912531]
 script = SubResource("GDScript_w8qno")
+next_level_scene = "uid://doq68ihetg6jy"
 
 [node name="Fuelbox3" parent="." unique_id=1575430995 groups=["FuelBoxes"] instance=ExtResource("1_ec2sf")]
 position = Vector2(246, 344)
+anagram_word = "i"
 
 [node name="Fuelbox" parent="." unique_id=747271704 groups=["FuelBoxes"] instance=ExtResource("1_ec2sf")]
 position = Vector2(374, 323)
-anagram_word = "antidisestablishmentarianism"
+anagram_word = "i"
 scrambled_word = "anaesthetistsindismalminibar"
 
 [node name="Fuelbox2" parent="." unique_id=573177515 groups=["FuelBoxes"] instance=ExtResource("1_ec2sf")]
 position = Vector2(669, 323)
-anagram_word = "SPACESHIP"
+anagram_word = "i"
 scrambled_word = "SCPAHPISE"
 
 [node name="Spacesuit" parent="." unique_id=681027859 groups=["Player"] instance=ExtResource("1_kgdjy")]
 position = Vector2(523, 306)
+scale = Vector2(2, 2)
 wall_min_slide_angle = 0.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=503343916]
