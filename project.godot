@@ -18,9 +18,11 @@ config/icon="res://icon.svg"
 [autoload]
 
 TimeManager="*uid://cgpiqfwpxy8j8"
+GameData="*uid://cgqntia1q53a5"
 
 [display]
 
+window/size/mode=2
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

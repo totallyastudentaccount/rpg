@@ -2,13 +2,13 @@
 
 [sub_resource type="GDScript" id="GDScript_3ao4k"]
 resource_name = "LevelLost"
-script/source = "# LevelWon.gd
-extends Control
+script/source = "extends Control
 
 @export_file(\"*.tscn\") var next_level_path: String = \"res://scene/computer/apps/spaceRPG/level2.tscn\"
 @export_file(\"*.tscn\") var upgrades_path: String = \"res://scene/computer/apps/spaceRPG/Upgrades.tscn\"
 
 func _on_next_level_button_pressed() -> void:
+	print(\"Next Level button clicked!\")
 	var desktop = get_tree().get_first_node_in_group(\"DesktopUI\")
 	if desktop:
 		desktop.change_subviewport_scene(next_level_path)
@@ -16,6 +16,7 @@ func _on_next_level_button_pressed() -> void:
 		get_tree().change_scene_to_file(next_level_path)
 
 func _on_upgrade_button_pressed() -> void:
+	print(\"Upgrade button clicked!\")
 	var desktop = get_tree().get_first_node_in_group(\"DesktopUI\")
 	if desktop:
 		desktop.change_subviewport_scene(upgrades_path)
@@ -23,6 +24,7 @@ func _on_upgrade_button_pressed() -> void:
 		get_tree().change_scene_to_file(upgrades_path)
 
 func _on_quit_button_pressed() -> void:
+	print(\"Quit button clicked!\")
 	var desktop = get_tree().get_first_node_in_group(\"DesktopUI\")
 	if desktop:
 		desktop.close_current_app()
@@ -89,4 +91,6 @@ text = "UPGRADES"
 layout_mode = 2
 text = "QUIT"
 
-[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button3" to="." method="_on_upgrade_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button2" to="." method="_on_quit_button_pressed"]

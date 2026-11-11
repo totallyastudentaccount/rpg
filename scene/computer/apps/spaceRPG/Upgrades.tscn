@@ -2,6 +2,59 @@
 
 [ext_resource type="Texture2D" uid="uid://c2toy2ejc52at" path="res://icon.svg" id="1_up0xt"]
 
+[sub_resource type="GDScript" id="GDScript_p6c7r"]
+resource_name = "upgrades"
+script/source = "# Upgrades.gd
+extends Control
+
+@onready var coins_label: Label = $Label # Main UI text showing total coins
+@onready var vbox1: VBoxContainer = $HBoxContainer/VBoxContainer
+@onready var vbox2: VBoxContainer = $HBoxContainer/VBoxContainer2
+@onready var vbox3: VBoxContainer = $HBoxContainer/VBoxContainer3
+
+func _ready() -> void:
+	update_ui()
+
+func update_ui() -> void:
+	# Update top coin display
+	if coins_label:
+		coins_label.text = \"Coins: \" + str(GameData.coins)
+
+	# Update VBoxContainer 1 (Booster)[cite: 4]
+	vbox1.get_node(\"Label\").text = \"Booster (Lvl \" + str(GameData.booster_level) + \")\"
+	vbox1.get_node(\"Label2\").text = \"Cost: \" + str(GameData.booster_cost) + \" Coins\"
+
+	# Update VBoxContainer 2 (Hint)[cite: 4]
+	vbox2.get_node(\"Label\").text = \"Hint Upgrade (Lvl \" + str(GameData.hint_level) + \")\"
+	vbox2.get_node(\"Label2\").text = \"Cost: \" + str(GameData.hint_cost) + \" Coins\"
+
+	# Update VBoxContainer 3 (Teleport)[cite: 4]
+	vbox3.get_node(\"Label\").text = \"Teleport (Lvl \" + str(GameData.teleport_level) + \")\"
+	vbox3.get_node(\"Label2\").text = \"Cost: \" + str(GameData.teleport_cost) + \" Coins\"
+
+# Connect TextureRect / Button GUI Input or Button pressed signals to these functions:
+func _on_booster_buy_pressed() -> void:
+	if GameData.coins >= GameData.booster_cost:
+		GameData.coins -= GameData.booster_cost
+		GameData.booster_level += 1
+		GameData.booster_cost = int(GameData.booster_cost * 1.5)
+		update_ui()
+
+func _on_hint_buy_pressed() -> void:
+	if GameData.coins >= GameData.hint_cost:
+		GameData.coins -= GameData.hint_cost
+		GameData.hint_level += 1
+		GameData.hint_cost = int(GameData.hint_cost * 1.5)
+		update_ui()
+
+func _on_teleport_buy_pressed() -> void:
+	if GameData.coins >= GameData.teleport_cost:
+		GameData.coins -= GameData.teleport_cost
+		GameData.teleport_level += 1
+		GameData.teleport_cost = int(GameData.teleport_cost * 1.5)
+		update_ui()
+"
+
 [node name="Upgrades" type="Control" unique_id=336744926]
 layout_mode = 3
 anchors_preset = 15
@@ -11,6 +64,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+script = SubResource("GDScript_p6c7r")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1824733426]
 layout_mode = 1

@@ -8,22 +8,43 @@ script/source = "# Player.gd
 extends CharacterBody2D
 
 # --- Top-Down Movement Parameters ---
-@export var max_speed: float = 200.0
+@export var base_max_speed: float = 200.0
 @export var acceleration: float = 1200.0  # Controls how quickly you reach max speed
 @export var friction: float = 800.0       # Controls smooth deceleration/stopping
 
 # --- Rocket Thruster & Gravity Parameters ---
-@export var max_fuel: float = 2.0
+@export var base_max_fuel: float = 2.0
 @export var boost_accel: float = -900.0   # Smooth upward thrust (no instant jump)
 @export var rising_gravity: float = 600.0  # Lower gravity while thrusting up
-@export var falling_gravity: float = 1800.0 # High gravity for a snappy, fast fall
+@export var base_falling_gravity: float = 1800.0 # High gravity for a snappy, fast fall
 @export var max_fall_speed: float = 800.0 # Terminal velocity cap
 @export var fall_limit_y: float = 1000.0  # Y position threshold that triggers Level Lost
 
-var current_fuel: float = max_fuel
+# Effective stats modified by upgrades
+var max_speed: float
+var max_fuel: float
+var falling_gravity: float
+
+var current_fuel: float
 var is_boosting: bool = false
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+
+func _ready() -> void:
+	# Add player to group so coins and desktop UI can find it
+	add_to_group(\"Player\")
+	apply_upgrades()
+
+func apply_upgrades() -> void:
+	# Booster level increases max fuel capacity
+	max_fuel = base_max_fuel + ((GameData.booster_level - 1) * 0.75)
+	current_fuel = max_fuel
+
+	# Teleport level slightly increases max horizontal speed
+	max_speed = base_max_speed + ((GameData.teleport_level - 1) * 25.0)
+
+	# Hint level reduces falling gravity for smoother control
+	falling_gravity = max(600.0, base_falling_gravity - ((GameData.hint_level - 1) * 150.0))
 
 func _physics_process(delta: float) -> void:
 	handle_smooth_movement(delta)
