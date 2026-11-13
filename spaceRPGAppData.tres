@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AppData" format=3 uid="uid://cw7vugwcpnlci"]
+
+[ext_resource type="PackedScene" uid="uid://cnhmsljbp55uo" path="res://scene/computer/apps/spaceRPG/spaceRPG.tscn" id="1_gqhel"]
+[ext_resource type="Texture2D" uid="uid://cwj18j4nkyys4" path="res://assets/icon/moon icon.png" id="2_2xtty"]
+[ext_resource type="Script" uid="uid://kpepf6mm3eoh" path="res://script/AppData.gd" id="2_kd60a"]
+
+[resource]
+script = ExtResource("2_kd60a")
+app_id = 8
+app_name = "Space RPG"
+icon = ExtResource("2_2xtty")
+app_scene = ExtResource("1_gqhel")
+metadata/_custom_type_script = "uid://kpepf6mm3eoh"
