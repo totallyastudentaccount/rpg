@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://ckpl2h0yo08r4"]
+
+[ext_resource type="Script" path="res://scene/computer/apps/spaceRPG/level_manager.gd" id="9_lvlmgr"]
+[ext_resource type="PackedScene" uid="uid://bk8130vctyfr5" path="res://scene/computer/apps/spaceRPG/fuelbox.tscn" id="1_swuyl"]
+[ext_resource type="PackedScene" uid="uid://crtpvw6xfdlj6" path="res://scene/computer/apps/spaceRPG/spacePC.tscn" id="2_xnowd"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bm3lg"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bm3lg"]
+distance = -384.0
+
+[node name="SpaceRpg" type="Node2D" unique_id=349912531]
+script = ExtResource("9_lvlmgr")
+
+[node name="Fuelbox3" parent="." unique_id=1575430995 groups=["FuelBoxes"] instance=ExtResource("1_swuyl")]
+position = Vector2(246, 344)
+anagram_word = "GALAXY"
+scrambled_word = "LAYGAX"
+
+[node name="Fuelbox" parent="." unique_id=747271704 groups=["FuelBoxes"] instance=ExtResource("1_swuyl")]
+position = Vector2(374, 323)
+anagram_word = "ORBIT"
+scrambled_word = "BROTI"
+
+[node name="Fuelbox2" parent="." unique_id=573177515 groups=["FuelBoxes"] instance=ExtResource("1_swuyl")]
+position = Vector2(669, 323)
+anagram_word = "NEBULA"
+scrambled_word = "BLUNEA"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2012954839]
+physics_material_override = SubResource("PhysicsMaterial_bm3lg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=917132399]
+position = Vector2(530, 0)
+shape = SubResource("WorldBoundaryShape2D_bm3lg")
+
+[node name="Spacesuit" parent="." unique_id=681027859 groups=["Player"] instance=ExtResource("2_xnowd")]
+position = Vector2(523, 306)
+wall_min_slide_angle = 0.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1468499812]

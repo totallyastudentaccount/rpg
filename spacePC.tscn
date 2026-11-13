@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://crtpvw6xfdlj6"]
+
+[ext_resource type="Script" path="res://scene/computer/apps/spaceRPG/space_player.gd" id="9_player"]
+[ext_resource type="Texture2D" uid="uid://dbes1th1lhpk4" path="res://assets/astronaut.png" id="1_m28se"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbbvt"]
+atlas = ExtResource("1_m28se")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6yxe"]
+atlas = ExtResource("1_m28se")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxcpy"]
+atlas = ExtResource("1_m28se")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mi4o"]
+atlas = ExtResource("1_m28se")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wg2n5"]
+atlas = ExtResource("1_m28se")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmtqy"]
+atlas = ExtResource("1_m28se")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylb5t"]
+atlas = ExtResource("1_m28se")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vixqe"]
+atlas = ExtResource("1_m28se")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryh10"]
+atlas = ExtResource("1_m28se")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsyla"]
+atlas = ExtResource("1_m28se")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s40qf"]
+atlas = ExtResource("1_m28se")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6f70q"]
+atlas = ExtResource("1_m28se")
+region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ebf8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbbvt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6yxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxcpy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4mi4o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wg2n5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmtqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylb5t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vixqe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryh10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsyla")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s40qf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6f70q")
+}],
+"loop": 1,
+"name": &"floating",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbbvt")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wc7jt"]
+size = Vector2(16, 52)
+
+[node name="Spacesuit" type="CharacterBody2D" unique_id=681027859]
+texture_filter = 1
+script = ExtResource("9_player")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1902846520]
+sprite_frames = SubResource("SpriteFrames_4ebf8")
+animation = &"floating"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1495284436]
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_wc7jt")

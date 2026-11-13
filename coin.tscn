@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bs0ilodly1wdo"]
+
+[sub_resource type="GDScript" id="GDScript_8hxtv"]
+resource_name = "coin"
+script/source = "# Coin.gd
+extends Area2D
+
+@export var coin_value: int = 1
+
+func _ready() -> void:
+	body_entered.connect(_on_body_entered)
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group(\"Player\") or body.name == \"Player\":
+		GameData.add_coins(coin_value)
+		queue_free() # Remove coin from scene
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p6c7r"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_goxiw"]
+
+[node name="Coin" type="Area2D" unique_id=409494748]
+script = SubResource("GDScript_8hxtv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=285645181]
+shape = SubResource("CircleShape2D_p6c7r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=224602859]
+sprite_frames = SubResource("SpriteFrames_goxiw")

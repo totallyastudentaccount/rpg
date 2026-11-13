@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://dxlmnaocixhso"]
+
+[ext_resource type="Script" path="res://scene/computer/apps/spaceRPG/anagram.gd" id="9_anagram"]
+[node name="Control" type="Control" unique_id=1502676751]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("9_anagram")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=801269830]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1685072873]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -62.5
+offset_right = 250.0
+offset_bottom = 62.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=702223372]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer" unique_id=1651025974]
+layout_mode = 2
+placeholder_text = "Enter guess"
+backspace_deletes_composite_character_enabled = true
+clear_button_enabled = true
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=298118397]
+layout_mode = 2
+text = "Submit"
+
+[node name="CancelButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Cancel"
+
+[connection signal="text_submitted" from="VBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/CancelButton" to="." method="_on_cancel_pressed"]
