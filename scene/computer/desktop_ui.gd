@@ -5,13 +5,15 @@ extends Window
 @onready var app_viewport: SubViewport = $AppContainer/AppViewport
 @onready var active_app_label: Label = $TaskBar/HBoxContainer/ActiveAppLabel
 @onready var fullscreen_button: Button = $TaskBar/HBoxContainer/FullscreenButton
+@onready var clock_label: Label = $TaskBar/HBoxContainer/ClockLabel
 
 const APP_BUTTON_SCENE = preload("res://scene/computer/appButtonUI.tscn")
 var is_in_office: bool = false
 var active_app_instance: Node = null
 
 # Desktop base window dimensions
-var mini_size: Vector2i = Vector2i(1152, 648)
+var mini_size: Vector2i = Vector2i(800, 500)
+var _fullscreen: bool = false
 
 func _ready() -> void:
 	add_to_group("DesktopUI") # Allows GameManager/LevelWon/LevelLost to find this window easily
@@ -19,7 +21,14 @@ func _ready() -> void:
 	app_container.visible = false
 	
 	if fullscreen_button:
+		fullscreen_button.text = "[ Fullscreen ]"
 		fullscreen_button.pressed.connect(toggle_fullscreen)
+
+	clock_label.text = TimeManager.get_formatted_time()
+	TimeManager.minute_passed.connect(_on_minute_passed)
+
+func _on_minute_passed(_hour: int, _minute: int) -> void:
+	clock_label.text = TimeManager.get_formatted_time()
 
 func setup_desktop(available_apps: Array[AppData], in_office: bool) -> void:
 	is_in_office = in_office
@@ -59,6 +68,7 @@ func launch_app(app: AppData) -> void:
 	active_app_instance = app_instance
 	
 	app_container.visible = true
+	app_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 	
 	if active_app_label:
 		active_app_label.text = "Running: " + app.app_name
@@ -73,6 +83,7 @@ func change_subviewport_scene(scene_path: String) -> void:
 		app_viewport.add_child(new_instance)
 		active_app_instance = new_instance
 		app_container.visible = true
+		app_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 	else:
 		print("ERROR: Could not load scene at ", scene_path)
 
@@ -87,13 +98,22 @@ func close_current_app() -> void:
 		active_app_label.text = ""
 
 func toggle_fullscreen() -> void:
-	if mode == Window.MODE_EXCLUSIVE_FULLSCREEN or mode == Window.MODE_FULLSCREEN:
-		mode = Window.MODE_WINDOWED
-		size = mini_size
-		fullscreen_button.text = "[ Fullscreen ]"
+	_fullscreen = not _fullscreen
+	if is_embedded():
+		# Embedded sub-windows can't use OS fullscreen, so fill the game window instead.
+		borderless = _fullscreen
+		if _fullscreen:
+			position = Vector2i.ZERO
+			size = Vector2i(get_tree().root.get_visible_rect().size)
+		else:
+			size = mini_size
+			move_to_center()
 	else:
-		mode = Window.MODE_EXCLUSIVE_FULLSCREEN
-		fullscreen_button.text = "[ Windowed ]"
+		mode = Window.MODE_EXCLUSIVE_FULLSCREEN if _fullscreen else Window.MODE_WINDOWED
+		if not _fullscreen:
+			size = mini_size
+			move_to_center()
+	fullscreen_button.text = "[ Windowed ]" if _fullscreen else "[ Fullscreen ]"
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
