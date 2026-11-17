@@ -14,6 +14,11 @@ func _ready() -> void:
 	current_hour = start_hour
 	current_minute = start_minute
 
+func reset() -> void:
+	current_hour = start_hour
+	current_minute = start_minute
+	minute_timer = 0.0
+
 func _process(delta: float) -> void:
 	minute_timer += delta
 	if minute_timer >= real_seconds_per_game_minute:

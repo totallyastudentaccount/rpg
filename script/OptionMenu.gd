@@ -1,25 +1,23 @@
 extends Control
 
-# This function runs automatically as soon as the main menu loads
 func _ready() -> void:
-	# This connects your button clicks directly to the functions below
-	$HBoxContainer2/Button.pressed.connect(load_level_1)
-	$HBoxContainer2/Button2.pressed.connect(load_level_2)
-	$HBoxContainer2/Button3.pressed.connect(load_credits)
-	$HBoxContainer2/Button4.pressed.connect(load_level_3)
-	$HBoxContainer2/Button5.pressed.connect(load_level_4)
+	$HBoxContainer2/Button.pressed.connect(open_settings)
+	$HBoxContainer2/Button2.pressed.connect(open_saves)
+	$HBoxContainer2/Button3.pressed.connect(back_to_main_menu)
+	$HBoxContainer2/Button4.pressed.connect(open_controls)
+	$HBoxContainer2/Button5.pressed.connect(open_credits)
 
-func load_level_1() -> void:
+func open_settings() -> void:
 	get_tree().change_scene_to_file("res://scene/menus/main_menu/settings.tscn")
 
-func load_level_2() -> void:
+func open_saves() -> void:
 	get_tree().change_scene_to_file("res://scene/menus/main_menu/save.tscn")
 
-func load_credits() -> void:
+func back_to_main_menu() -> void:
 	get_tree().change_scene_to_file("res://scene/menus/main_menu/mainmenu.tscn")
-	
-func load_level_3() -> void:
+
+func open_controls() -> void:
 	get_tree().change_scene_to_file("res://scene/menus/main_menu/control.tscn")
 
-func load_level_4() -> void:
+func open_credits() -> void:
 	get_tree().change_scene_to_file("res://scene/menus/main_menu/credit.tscn")

@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://drxl5r7tfgyv4"]
+[gd_scene load_steps=2 format=3 uid="uid://drxl5r7tfgyv4"]
 
 [ext_resource type="Script" uid="uid://xpxbyn0gbnck" path="res://script/main.gd" id="1_vvrg6"]
 
-[node name="Control" type="Control" unique_id=1962129945]
+[node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vvrg6")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1935238992]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,42 +19,42 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1364360001]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.55200005
+anchor_top = 0.552
 anchor_right = 0.5
-anchor_bottom = 0.55200005
+anchor_bottom = 0.552
 offset_left = -277.0
-offset_top = -151.69604
+offset_top = -151.696
 offset_right = 278.0
-offset_bottom = 260.30396
+offset_bottom = 260.304
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 14
 alignment = 1
 
-[node name="play" type="Button" parent="VBoxContainer" unique_id=890991253]
+[node name="play" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Play"
 
-[node name="option" type="Button" parent="VBoxContainer" unique_id=657065081]
+[node name="option" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Options"
 
-[node name="quit" type="Button" parent="VBoxContainer" unique_id=1978257020]
+[node name="quit" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Quit"
 
-[node name="Label" type="Label" parent="." unique_id=1234657148]
+[node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

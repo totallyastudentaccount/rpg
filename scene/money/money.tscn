@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://cx5pyjfcr6yi7"]
 
+[ext_resource type="Script" uid="uid://b5ijwq8p61k12" path="res://script/money_label.gd" id="9_money"]
+
 [node name="Money" type="Node2D" unique_id=658044282]
 
 [node name="Main" type="Control" parent="." unique_id=1963205744]
@@ -15,3 +17,4 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Money: $0"
+script = ExtResource("9_money")

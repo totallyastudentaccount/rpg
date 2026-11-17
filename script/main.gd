@@ -1,18 +1,16 @@
 extends Control
 
-# This function runs automatically as soon as the main menu loads
 func _ready() -> void:
-	# This connects your button clicks directly to the functions below
-	$VBoxContainer/play.pressed.connect(load_level_1)
-	$VBoxContainer/option.pressed.connect(load_level_2)
-	$VBoxContainer/quit.pressed.connect(load_credits)
+	$VBoxContainer/play.pressed.connect(start_game)
+	$VBoxContainer/option.pressed.connect(open_options)
+	$VBoxContainer/quit.pressed.connect(quit_game)
 
-func load_level_1() -> void:
+func start_game() -> void:
+	TimeManager.reset() # TimeManager is an autoload, so restart the clock for a new game
 	get_tree().change_scene_to_file("res://scene/main.tscn")
 
-func load_level_2() -> void:
+func open_options() -> void:
 	get_tree().change_scene_to_file("res://scene/menus/main_menu/settings.tscn")
 
-func load_credits() -> void:
-	print("Exit button was clicked!")
+func quit_game() -> void:
 	get_tree().quit()

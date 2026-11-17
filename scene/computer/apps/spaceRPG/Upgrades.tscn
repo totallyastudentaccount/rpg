@@ -1,59 +1,7 @@
 [gd_scene format=3 uid="uid://c7fhiofftwsk7"]
 
+[ext_resource type="Script" path="res://scene/computer/apps/spaceRPG/upgrades.gd" id="9_upgrades"]
 [ext_resource type="Texture2D" uid="uid://c2toy2ejc52at" path="res://icon.svg" id="1_up0xt"]
-
-[sub_resource type="GDScript" id="GDScript_p6c7r"]
-resource_name = "upgrades"
-script/source = "# Upgrades.gd
-extends Control
-
-@onready var coins_label: Label = $Label # Main UI text showing total coins
-@onready var vbox1: VBoxContainer = $HBoxContainer/VBoxContainer
-@onready var vbox2: VBoxContainer = $HBoxContainer/VBoxContainer2
-@onready var vbox3: VBoxContainer = $HBoxContainer/VBoxContainer3
-
-func _ready() -> void:
-	update_ui()
-
-func update_ui() -> void:
-	# Update top coin display
-	if coins_label:
-		coins_label.text = \"Coins: \" + str(GameData.coins)
-
-	# Update VBoxContainer 1 (Booster)[cite: 4]
-	vbox1.get_node(\"Label\").text = \"Booster (Lvl \" + str(GameData.booster_level) + \")\"
-	vbox1.get_node(\"Label2\").text = \"Cost: \" + str(GameData.booster_cost) + \" Coins\"
-
-	# Update VBoxContainer 2 (Hint)[cite: 4]
-	vbox2.get_node(\"Label\").text = \"Hint Upgrade (Lvl \" + str(GameData.hint_level) + \")\"
-	vbox2.get_node(\"Label2\").text = \"Cost: \" + str(GameData.hint_cost) + \" Coins\"
-
-	# Update VBoxContainer 3 (Teleport)[cite: 4]
-	vbox3.get_node(\"Label\").text = \"Teleport (Lvl \" + str(GameData.teleport_level) + \")\"
-	vbox3.get_node(\"Label2\").text = \"Cost: \" + str(GameData.teleport_cost) + \" Coins\"
-
-# Connect TextureRect / Button GUI Input or Button pressed signals to these functions:
-func _on_booster_buy_pressed() -> void:
-	if GameData.coins >= GameData.booster_cost:
-		GameData.coins -= GameData.booster_cost
-		GameData.booster_level += 1
-		GameData.booster_cost = int(GameData.booster_cost * 1.5)
-		update_ui()
-
-func _on_hint_buy_pressed() -> void:
-	if GameData.coins >= GameData.hint_cost:
-		GameData.coins -= GameData.hint_cost
-		GameData.hint_level += 1
-		GameData.hint_cost = int(GameData.hint_cost * 1.5)
-		update_ui()
-
-func _on_teleport_buy_pressed() -> void:
-	if GameData.coins >= GameData.teleport_cost:
-		GameData.coins -= GameData.teleport_cost
-		GameData.teleport_level += 1
-		GameData.teleport_cost = int(GameData.teleport_cost * 1.5)
-		update_ui()
-"
 
 [node name="Upgrades" type="Control" unique_id=336744926]
 layout_mode = 3
@@ -64,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = SubResource("GDScript_p6c7r")
+script = ExtResource("9_upgrades")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1824733426]
 layout_mode = 1
@@ -108,6 +56,10 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Upgrade"
 horizontal_alignment = 1
 
+[node name="BuyButton" type="Button" parent="ColorRect/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Buy"
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="ColorRect/HBoxContainer" unique_id=589281508]
 layout_mode = 2
 
@@ -127,6 +79,10 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Upgrade"
 horizontal_alignment = 1
 
+[node name="BuyButton" type="Button" parent="ColorRect/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Buy"
+
 [node name="VBoxContainer3" type="VBoxContainer" parent="ColorRect/HBoxContainer" unique_id=1963897472]
 layout_mode = 2
 
@@ -145,6 +101,10 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Upgrade"
 horizontal_alignment = 1
 
+[node name="BuyButton" type="Button" parent="ColorRect/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "Buy"
+
 [node name="Label" type="Label" parent="." unique_id=865601719]
 layout_mode = 1
 anchors_preset = 8
@@ -160,3 +120,18 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Upgrades Available:"
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -60.0
+offset_right = 50.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"

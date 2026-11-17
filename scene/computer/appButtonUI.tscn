@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c4ye60hgiv4rf"]
 
-[ext_resource type="Script" uid="uid://cusessv7oqe55" path="res://app_icon.gd" id="1_4kdwi"]
+[ext_resource type="Script" uid="uid://cusessv7oqe55" path="res://script/app_icon.gd" id="1_4kdwi"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_f43vj"]
 
@@ -35,3 +35,15 @@ texture_focused = SubResource("PlaceholderTexture2D_a5it0")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("1_4kdwi")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1

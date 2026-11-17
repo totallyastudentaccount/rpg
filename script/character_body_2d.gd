@@ -10,6 +10,7 @@ func _physics_process(_delta: float) -> void:
 	if is_using_computer:
 		velocity = Vector2.ZERO
 		move_and_slide()
+		_play_idle()
 		return
 		
 	var direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down") 
@@ -21,7 +22,7 @@ func _physics_process(_delta: float) -> void:
 
 func update_animation(direction: Vector2) -> void: 
 	if direction == Vector2.ZERO: 
-		animated_sprite.play("idle") 
+		_play_idle()
 		return 
 
 	if direction.x != 0 and direction.y != 0:
@@ -44,10 +45,21 @@ func update_animation(direction: Vector2) -> void:
 			animated_sprite.flip_h = true 
 			animated_sprite.play("side_walk") 
 	else: 
+		animated_sprite.flip_h = false
 		if direction.y > 0: 
 			last_direction = "down" 
 			animated_sprite.play("front_walk") 
 		else: 
 			last_direction = "up" 
 			animated_sprite.play("back_walk")
-			
+
+func _play_idle() -> void:
+	match last_direction:
+		"up":
+			animated_sprite.flip_h = false
+			animated_sprite.play("back_idle")
+		"left", "right":
+			animated_sprite.play("side_idle")
+		_:
+			animated_sprite.flip_h = false
+			animated_sprite.play("idle")

@@ -1,37 +1,6 @@
 [gd_scene format=3 uid="uid://cb4gudefl7tmb"]
 
-[sub_resource type="GDScript" id="GDScript_8olf6"]
-resource_name = "LevelWon"
-script/source = "extends Control
-
-@export_file(\"*.tscn\") var next_level_path: String = \"res://scene/computer/apps/spaceRPG/level2.tscn\"
-@export_file(\"*.tscn\") var upgrades_path: String = \"res://scene/computer/apps/spaceRPG/Upgrades.tscn\"
-
-func _on_next_level_button_pressed() -> void:
-	print(\"Next Level button clicked!\")
-	var desktop = get_tree().get_first_node_in_group(\"DesktopUI\")
-	if desktop:
-		desktop.change_subviewport_scene(next_level_path)
-	else:
-		get_tree().change_scene_to_file(next_level_path)
-
-func _on_upgrade_button_pressed() -> void:
-	print(\"Upgrade button clicked!\")
-	var desktop = get_tree().get_first_node_in_group(\"DesktopUI\")
-	if desktop:
-		desktop.change_subviewport_scene(upgrades_path)
-	else:
-		get_tree().change_scene_to_file(upgrades_path)
-
-func _on_quit_button_pressed() -> void:
-	print(\"Quit button clicked!\")
-	var desktop = get_tree().get_first_node_in_group(\"DesktopUI\")
-	if desktop:
-		desktop.close_current_app()
-	else:
-		get_tree().quit()
-"
-
+[ext_resource type="Script" path="res://scene/computer/apps/spaceRPG/level_result.gd" id="9_result"]
 [node name="LevelWon" type="Control" unique_id=354289387]
 layout_mode = 3
 anchors_preset = 15
@@ -41,9 +10,8 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = SubResource("GDScript_8olf6")
-next_level_path = "uid://doq68ihetg6jy"
-upgrades_path = "uid://c7fhiofftwsk7"
+script = ExtResource("9_result")
+is_win = true
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=607732716]
 layout_mode = 1

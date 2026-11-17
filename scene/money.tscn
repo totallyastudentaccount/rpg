@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://d2l86vmwtu8qj"]
 
+[ext_resource type="Script" uid="uid://b5ijwq8p61k12" path="res://script/money_label.gd" id="9_money"]
+
 [node name="Control" type="Control" unique_id=837803206]
 layout_mode = 3
 anchors_preset = 0
@@ -18,5 +20,6 @@ offset_top = 227.0
 offset_right = 204.0
 offset_bottom = 250.0
 text = "Money: $0"
+script = ExtResource("9_money")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Button/MoneyLabel" unique_id=1742462842]
