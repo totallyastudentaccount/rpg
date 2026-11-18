@@ -11,6 +11,12 @@ const LEVELS: Array[String] = [
 const COINS_PER_PUZZLE: int = 5
 const COINS_PER_LEVEL: int = 10
 const UPGRADE_COST_GROWTH: float = 1.5
+const MAX_UPGRADE_LEVEL: int = 5
+
+# What each upgrade level gives you.
+const FUEL_PER_LEVEL: float = 0.75   # extra seconds of thruster fuel
+const SPEED_PER_LEVEL: float = 25.0  # extra movement speed
+# Hints: level 1 = none, level 2 = 1 hint per puzzle, level 3 = 2, ...
 
 var coins: int = 0
 
@@ -18,15 +24,48 @@ var coins: int = 0
 var current_level: int = 0
 var level_cleared: bool = false
 
-# Upgrade Levels & Costs
-var booster_level: int = 1
-var booster_cost: int = 10
+# Upgrade state. Every upgrade starts at level 1 (no bonus).
+var upgrades: Dictionary = {
+	"booster": {"level": 1, "cost": 10},
+	"hints": {"level": 1, "cost": 15},
+	"speed": {"level": 1, "cost": 20},
+}
 
-var hint_level: int = 1
-var hint_cost: int = 15
+func upgrade_level(id: String) -> int:
+	return upgrades[id]["level"]
 
-var teleport_level: int = 1
-var teleport_cost: int = 20
+func upgrade_cost(id: String) -> int:
+	return upgrades[id]["cost"]
+
+func is_maxed(id: String) -> bool:
+	return upgrade_level(id) >= MAX_UPGRADE_LEVEL
+
+func can_buy(id: String) -> bool:
+	return not is_maxed(id) and coins >= upgrade_cost(id)
+
+# Returns true if the purchase went through.
+func buy_upgrade(id: String) -> bool:
+	if is_maxed(id) or not spend_coins(upgrade_cost(id)):
+		return false
+	upgrades[id]["level"] += 1
+	upgrades[id]["cost"] = int(upgrades[id]["cost"] * UPGRADE_COST_GROWTH)
+	return true
+
+# Effects, used by the player, the puzzle and the upgrades screen.
+func fuel_bonus(level: int = -1) -> float:
+	if level < 0:
+		level = upgrade_level("booster")
+	return (level - 1) * FUEL_PER_LEVEL
+
+func speed_bonus(level: int = -1) -> float:
+	if level < 0:
+		level = upgrade_level("speed")
+	return (level - 1) * SPEED_PER_LEVEL
+
+func hints_per_puzzle(level: int = -1) -> int:
+	if level < 0:
+		level = upgrade_level("hints")
+	return level - 1
 
 func add_coins(amount: int) -> void:
 	coins += amount

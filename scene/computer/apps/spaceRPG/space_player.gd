@@ -35,10 +35,10 @@ func _ready() -> void:
 	apply_upgrades()
 
 func apply_upgrades() -> void:
-	max_fuel = base_max_fuel + ((GameData.booster_level - 1) * 0.75)
+	max_fuel = base_max_fuel + GameData.fuel_bonus()
 	current_fuel = max_fuel
-	max_speed = base_max_speed + ((GameData.teleport_level - 1) * 25.0)
-	falling_gravity = max(600.0, base_falling_gravity - ((GameData.hint_level - 1) * 150.0))
+	max_speed = base_max_speed + GameData.speed_bonus()
+	falling_gravity = base_falling_gravity
 
 func _physics_process(delta: float) -> void:
 	handle_smooth_movement(delta)
